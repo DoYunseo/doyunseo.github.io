@@ -16,5 +16,12 @@ await mkdir(join(output, "assets"), { recursive: true });
 await writeFile(join(output, "index.html"), renderPage(content, { analyticsId }), "utf8");
 await writeFile(join(output, "styles.css"), await readFile(join(root, "src/styles.css"), "utf8"), "utf8");
 await copyFile(join(root, "src/analytics.js"), join(output, "analytics.js"));
-await copyFile(join(root, "src/assets/yunseo-portrait.webp"), join(output, "assets/yunseo-portrait.webp"));
+for (const asset of [
+  "yunseo-portrait.webp",
+  "pneumatic-haptic-glove-chi2026.pdf",
+  "gaze-conditioned-grasp-ksc2025.pdf",
+  "crossgaussian-uist-adjunct-2025.pdf",
+]) {
+  await copyFile(join(root, "src/assets", asset), join(output, "assets", asset));
+}
 console.log(`Built ${join(output, "index.html")}`);

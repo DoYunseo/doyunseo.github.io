@@ -51,7 +51,7 @@ export const content = {
       type: "Workshop paper",
       authors: ["Minwoo Lee", "Sungjoon Yoon", "Seongmin Yun", "Yunseo Do", "Seungjae Oh"],
       contribution: "Built the AI software framework and conducted user experiments on pose-based communication.",
-      pdfUrl: "https://raw.githubusercontent.com/derikon/HapticsAI_Workshop/main/position_papers/Oh-AIforHapticsHapticsforAI.pdf",
+      pdfUrl: "./assets/pneumatic-haptic-glove-chi2026.pdf",
     },
     {
       title: "Gaze-Conditioned Grasp Synthesis via 2D Segmentation and 3D Reconstruction",
@@ -59,7 +59,7 @@ export const content = {
       type: "Conference paper",
       authors: ["Yunseo Do", "Seungjae Oh"],
       contribution: "Designed the gaze-to-grasp pipeline and evaluated it with users.",
-      pdfUrl: "https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE12577724",
+      pdfUrl: "./assets/gaze-conditioned-grasp-ksc2025.pdf",
     },
     {
       title: "CrossGaussian: Enhancing Remote Collaboration through 3D Gaussian Splatting and Real-time 360° Streaming",
@@ -67,7 +67,7 @@ export const content = {
       type: "Conference paper",
       authors: ["Jaehyun Byun", "Byunghoon Kang", "Yonghyun Gwon", "Hongsong Choi", "Yunseo Do", "Eunho Kim", "Sangkeun Park", "Seungjae Oh"],
       contribution: "Supported user experiments and semi-structured interviews for the VR collaboration system.",
-      pdfUrl: "https://dl.acm.org/doi/pdf/10.1145/3746058.3758348",
+      pdfUrl: "./assets/crossgaussian-uist-adjunct-2025.pdf",
     },
   ],
   education: {

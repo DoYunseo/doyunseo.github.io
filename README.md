@@ -4,7 +4,7 @@ Personal research homepage: [doyunseo.github.io](https://doyunseo.github.io/)
 
 ## Update
 
-- Edit `src/content.mjs` for text and links, `src/styles.css` for design, and `src/assets/yunseo-portrait.webp` for the photo.
+- Edit `src/content.mjs` for text and links, `src/styles.css` for design, and `src/assets/` for the photo and published paper PDFs.
 - Run `node scripts/build.mjs` to generate `dist/` and preview with `python -m http.server 8765 --directory dist`.
 - Push to `main` to deploy through GitHub Actions.
 
