@@ -67,6 +67,7 @@ export const content = {
       type: "Conference paper",
       authors: ["Jaehyun Byun", "Byunghoon Kang", "Yonghyun Gwon", "Hongsong Choi", "Yunseo Do", "Eunho Kim", "Sangkeun Park", "Seungjae Oh"],
       contribution: "Supported user experiments and semi-structured interviews for the VR collaboration system.",
+      doiUrl: "https://doi.org/10.1145/3746058.3758348",
       pdfUrl: "./assets/crossgaussian-uist-adjunct-2025.pdf",
     },
   ],

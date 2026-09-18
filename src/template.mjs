@@ -27,14 +27,22 @@ const renderAuthors = (authors, profileName) => authors?.length ? `
         ? `<strong class="publication-author-self">${escape(author)}</strong>`
         : escape(author)).join(", ")}</p>` : "";
 
+const renderResearchLinks = (item) => {
+  const links = [
+    item.doiUrl && externalLink(item.doiUrl, "DOI", "small-button", `${item.title} DOI`),
+    item.pdfUrl && externalLink(item.pdfUrl, "PDF", "small-button", `${item.title} PDF`),
+  ].filter(Boolean);
+  return links.length ? `
+      <div class="publication-links">${links.join("")}</div>` : "";
+};
+
 const renderResearch = (items, profileName) => items.map((item) => `
   <article class="publication">
     <div class="publication-type">${escape(item.type)}</div>
     <div class="publication-body">
       <h3>${escape(item.title)}</h3>${renderAuthors(item.authors, profileName)}
       <p class="publication-venue">${escape(item.venue)}</p>
-      <p class="publication-contribution"><span>Contribution:</span> ${escape(item.contribution)}</p>${item.pdfUrl ? `
-      <div class="publication-links">${externalLink(item.pdfUrl, "PDF", "small-button", `${item.title} PDF`)}</div>` : ""}
+      <p class="publication-contribution"><span>Contribution:</span> ${escape(item.contribution)}</p>${renderResearchLinks(item)}
     </div>
   </article>`).join("");
 
