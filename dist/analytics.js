@@ -1,62 +1,42 @@
-const banner = document.querySelector("[data-analytics-banner]");
-const measurementId = banner?.dataset.measurementId;
-const storageKey = "yunseo-analytics-consent";
+const measurementId = document.currentScript?.dataset.measurementId;
+let previousChoice;
 
-if (banner && measurementId) {
-  let tagLoaded = false;
-  let choice;
+try {
+  previousChoice = localStorage.getItem("yunseo-analytics-consent");
+} catch {
+  // Analytics can still run when local storage is unavailable.
+}
 
-  try {
-    choice = localStorage.getItem(storageKey);
-  } catch {
-    // Browsers may block local storage. Keep the choice available for this visit.
-  }
+// Keep the choice of visitors who declined the old consent prompt.
+if (measurementId && previousChoice !== "deny") {
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
 
-  const loadAnalytics = () => {
-    if (tagLoaded) return;
-    tagLoaded = true;
-
-    window.dataLayer = window.dataLayer || [];
-    window.gtag = function () { window.dataLayer.push(arguments); };
-    window.gtag("js", new Date());
-    window.gtag("config", measurementId);
-
-    const script = document.createElement("script");
-    script.async = true;
-    script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(measurementId)}`;
-    document.head.append(script);
-  };
-
-  const showBanner = () => {
-    banner.hidden = false;
-  };
-
-  const hideBanner = () => {
-    banner.hidden = true;
-  };
-
-  if (choice === "allow") {
-    loadAnalytics();
-    hideBanner();
-  } else if (choice === "deny") {
-    hideBanner();
-  } else {
-    showBanner();
-  }
-
-  banner.addEventListener("click", (event) => {
-    const button = event.target.closest("[data-analytics-choice]");
-    if (!button) return;
-
-    const nextChoice = button.dataset.analyticsChoice;
-    try {
-      localStorage.setItem(storageKey, nextChoice);
-    } catch {
-      // The choice still applies to the current page.
-    }
-
-    if (nextChoice === "allow") loadAnalytics();
-    hideBanner();
-    if (nextChoice === "deny" && tagLoaded) location.reload();
+  // Analytics cookies remain off by default in the EEA, UK, and Switzerland.
+  window.gtag("consent", "default", {
+    analytics_storage: "denied",
+    region: [
+      "AT", "BE", "BG", "HR", "CY", "CZ", "DK", "EE", "FI", "FR", "DE",
+      "GR", "HU", "IS", "IE", "IT", "LV", "LI", "LT", "LU", "MT", "NL",
+      "NO", "PL", "PT", "RO", "SK", "SI", "ES", "SE", "GB", "CH",
+    ],
   });
+  window.gtag("consent", "default", {
+    analytics_storage: "granted",
+    ad_storage: "denied",
+    ad_user_data: "denied",
+    ad_personalization: "denied",
+  });
+
+  if (previousChoice === "allow") {
+    window.gtag("consent", "update", { analytics_storage: "granted" });
+  }
+
+  window.gtag("js", new Date());
+  window.gtag("config", measurementId);
+
+  const script = document.createElement("script");
+  script.async = true;
+  script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(measurementId)}`;
+  document.head.append(script);
 }

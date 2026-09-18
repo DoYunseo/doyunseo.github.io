@@ -145,14 +145,7 @@ export function renderPage(data, { analyticsId = "" } = {}) {
         <a href="#top">Back to top ↑</a>
       </div>
     </footer>${analyticsId ? `
-    <div class="analytics-banner" data-analytics-banner data-measurement-id="${escape(analyticsId)}" hidden>
-      <p>May I use Google Analytics to see visits by country and region? It loads only if you allow it.</p>
-      <div class="analytics-choices">
-        <button type="button" data-analytics-choice="allow">Allow analytics</button>
-        <button type="button" data-analytics-choice="deny">No thanks</button>
-      </div>
-    </div>
-    <script src="./analytics.js" defer></script>` : ""}
+    <script src="./analytics.js" data-measurement-id="${escape(analyticsId)}" defer></script>` : ""}
   </body>
 </html>`;
 }
