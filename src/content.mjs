@@ -43,7 +43,7 @@ export const content = {
       title: "Haptic Guidance in Human–AI Interaction",
       venue: "Under Review",
       type: "First-author manuscript",
-      contribution: "Leading the study design and evaluation of physical human–AI guidance.",
+      contribution: "Led the full research process: topic selection, experimental design, user study execution, quantitative and qualitative analysis, and manuscript writing.",
     },
     {
       title: "A Pneumatic Haptic Glove for Pose-Based Human-AI Communication",
