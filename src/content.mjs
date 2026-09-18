@@ -13,13 +13,17 @@ export const content = {
     [
       "Hello! I'm Yunseo Do, an undergraduate researcher at the ",
       { label: "Human & Interactive Technology Lab (ITEM)", url: "https://hci.khu.ac.kr/" },
-      " at Kyung Hee University, advised by Prof. Seungjae Oh.",
+      " at Kyung Hee University, advised by ",
+      { label: "Prof. Seungjae Oh", url: "https://lokilike.netlify.app/about/" },
+      ".",
     ],
     [
       "My research interests include human–AI interaction, AI-based interaction, physical AI, and haptic shared control. I'm especially curious about how intelligent systems can interact with people in the physical world.",
     ],
     [
-      "Previously, I was a research intern in the Environmental Safety Group at KIST Europe. I study Artificial Intelligence at Kyung Hee University and expect to graduate in February 2027.",
+      "Previously, I was a research intern in the Environmental Safety Group at ",
+      { label: "KIST Europe", url: "https://www.kist-europe.de/" },
+      ". I study Artificial Intelligence at Kyung Hee University, with expected graduation in February 2027.",
     ],
     [
       "I enjoy exploring new areas of AI and writing about what I learn. Please feel free to ",
@@ -28,25 +32,39 @@ export const content = {
     ],
   ],
   news: [
-    { date: "2026.01", text: "Received the Encouragement Prize in the KSC 2025 Undergraduate Paper Competition." },
+    { date: "2026", text: "Co-authored a paper at the CHI 2026 Haptics for AI Workshop." },
+    { date: "2025", text: "Received an Honorable Mention for our paper at KSC 2025." },
     { date: "2025.03", text: "Joined ITEM Lab at Kyung Hee University as an undergraduate researcher." },
     { date: "2024.08", text: "Started a research internship at KIST Europe." },
     { date: "2024.01", text: "Became president of KHUDA's 5th cohort." },
   ],
   research: [
     {
-      title: "Gaze-Conditioned Grasp Synthesis via 2D Segmentation and 3D Reconstruction",
-      venue: "Korea Software Congress 2025 · Undergraduate Paper Competition",
-      type: "Research paper",
-      abstract: "This work proposes a gaze-conditioned pipeline that identifies a fixated object from egocentric images, reconstructs it in 3D, and synthesizes natural human grasps. The project received an Encouragement Prize in the undergraduate paper competition.",
+      title: "Haptic Guidance in Human–AI Interaction",
+      venue: "Under Review",
+      type: "First-author manuscript",
     },
     {
-      title: "T2VSum: Multimodal Video Summarization through Text-Derived Video Features",
-      venue: "KHU Advanced Deep Learning Project · 2024",
-      type: "Research project",
-      abstract: "This project explored text-derived video features for multimodal video summarization, including cases where some video frames are damaged.",
+      title: "A Pneumatic Haptic Glove for Pose-Based Human-AI Communication",
+      venue: "CHI 2026 · Haptics for AI Workshop",
+      type: "Workshop paper",
+    },
+    {
+      title: "Gaze-Conditioned Grasp Synthesis via 2D Segmentation and 3D Reconstruction",
+      venue: "Korea Software Congress (KSC) 2025 · Honorable Mention",
+      type: "Conference paper",
+    },
+    {
+      title: "CrossGaussian: Enhancing Remote Collaboration through 3D Gaussian Splatting and Real-time 360° Streaming",
+      venue: "UIST Adjunct 2025",
+      type: "Conference paper",
     },
   ],
+  education: {
+    degree: "B.S. in Artificial Intelligence",
+    university: "Kyung Hee University",
+    expectedGraduation: "February 2027",
+  },
   projects: [
     {
       title: "arXiv Save As Title",
@@ -56,12 +74,12 @@ export const content = {
   ],
   experience: [
     { period: "2025.03 – Present", role: "Undergraduate Researcher", organization: "ITEM Lab, Kyung Hee University" },
-    { period: "2024.08 – 2025.01", role: "Research Intern", organization: "Environmental Safety Group, KIST Europe" },
+    { period: "2024.08 – 2025.01", role: "Research Intern", organization: "Environmental Safety Group, KIST Europe", organizationUrl: "https://www.kist-europe.de/" },
     { period: "2025.05 – 2025.10", role: "AI Research Club Instructor", organization: "Dongbuk High School, Seoul" },
     { period: "2024.01 – 2024.07", role: "President, KHUDA 5th", organization: "Data Analysis & AI Club, Kyung Hee University" },
   ],
   awards: [
-    { year: "2026", award: "Encouragement Prize", event: "Korea Software Congress 2025 · Undergraduate Paper Competition" },
+    { year: "2025", award: "Honorable Mention Paper Award", event: "Korea Software Congress (KSC)" },
     { year: "2023", award: "Grand Prize", event: "Seoul Central AI Competition (SCAICO)" },
     { year: "2023", award: "Junior Prize", event: "Kyung Hee University SW Festival" },
     { year: "2023", award: "Excellence Prize", event: "KHUTHON" },

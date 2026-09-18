@@ -28,10 +28,6 @@ const renderResearch = (items) => items.map((item) => `
     <div class="publication-body">
       <h3>${escape(item.title)}</h3>
       <p class="publication-venue">${escape(item.venue)}</p>
-      <details class="abstract">
-        <summary>Abstract</summary>
-        <p>${escape(item.abstract)}</p>
-      </details>
     </div>
   </article>`).join("");
 
@@ -45,7 +41,7 @@ const renderProjects = (items) => items.map((item) => `
 const renderExperience = (items) => items.map((item) => `
   <li class="simple-row">
     <span class="row-date">${escape(item.period)}</span>
-    <div><strong>${escape(item.role)}</strong><span>${escape(item.organization)}</span></div>
+    <div><strong>${escape(item.role)}</strong><span>${item.organizationUrl ? externalLink(item.organizationUrl, item.organization) : escape(item.organization)}</span></div>
   </li>`).join("");
 
 const renderAwards = (items) => items.map((item) => `
@@ -54,7 +50,7 @@ const renderAwards = (items) => items.map((item) => `
     <div><strong>${escape(item.award)}</strong><span>${escape(item.event)}</span></div>
   </li>`).join("");
 
-export function renderPage(data) {
+export function renderPage(data, { analyticsId = "" } = {}) {
   return `<!doctype html>
 <html lang="en">
   <head>
@@ -114,7 +110,7 @@ export function renderPage(data) {
         <section class="main-section" id="experience" aria-labelledby="experience-title">
           <h2 id="experience-title">Experience &amp; Education</h2>
           <ol class="simple-list">${renderExperience(data.experience)}</ol>
-          <div class="education"><span class="row-date">Education</span><div><strong>B.E. in Artificial Intelligence</strong><span>Kyung Hee University · Expected February 2027</span></div></div>
+          <div class="education"><span class="row-date">Education</span><div><strong>${escape(data.education.degree)}</strong><span>${escape(data.education.university)} · Expected Graduation: ${escape(data.education.expectedGraduation)}</span></div></div>
         </section>
 
         <section class="main-section" id="recognition" aria-labelledby="recognition-title">
@@ -126,8 +122,19 @@ export function renderPage(data) {
 
     <footer class="site-footer page-width">
       <p>© 2026 ${escape(data.name)}.</p>
-      <a href="#top">Back to top ↑</a>
-    </footer>
+      <div class="footer-actions">${analyticsId ? `
+        <button class="analytics-settings" type="button" data-analytics-settings hidden>Analytics settings</button>` : ""}
+        <a href="#top">Back to top ↑</a>
+      </div>
+    </footer>${analyticsId ? `
+    <div class="analytics-banner" data-analytics-banner data-measurement-id="${escape(analyticsId)}" hidden>
+      <p>May I use Google Analytics to see visits by country and region? It loads only if you allow it.</p>
+      <div class="analytics-choices">
+        <button type="button" data-analytics-choice="allow">Allow analytics</button>
+        <button type="button" data-analytics-choice="deny">No thanks</button>
+      </div>
+    </div>
+    <script src="./analytics.js" defer></script>` : ""}
   </body>
 </html>`;
 }

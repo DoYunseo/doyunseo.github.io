@@ -31,7 +31,7 @@ a {
 }
 
 a:focus-visible,
-summary:focus-visible {
+button:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 4px;
 }
@@ -296,7 +296,12 @@ img {
   line-height: 1.6;
 }
 
-.abstract summary,
+.simple-row a {
+  color: var(--accent-dark);
+  text-decoration-color: #cba98f;
+  text-underline-offset: 3px;
+}
+
 .small-button {
   display: inline-block;
   padding: 2px 8px;
@@ -313,19 +318,8 @@ img {
   transition: background 0.18s ease;
 }
 
-.abstract summary:hover,
 .small-button:hover {
   background: var(--accent-light);
-}
-
-.abstract p {
-  margin: 10px 0 0;
-  padding: 12px 15px;
-  border-left: 2px solid #c59b7e;
-  color: #574b42;
-  background: #fbf8f5;
-  font-size: 14px;
-  line-height: 1.65;
 }
 
 .project {
@@ -397,6 +391,75 @@ img {
 
 .site-footer a:hover {
   color: var(--accent);
+}
+
+.footer-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.analytics-settings {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.analytics-settings:hover {
+  color: var(--accent);
+}
+
+.analytics-banner {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 10;
+  width: min(390px, calc(100% - 32px));
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: white;
+  box-shadow: 0 10px 35px rgba(45, 32, 23, 0.15);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.analytics-banner[hidden],
+.analytics-settings[hidden] {
+  display: none;
+}
+
+.analytics-banner p {
+  margin: 0 0 12px;
+}
+
+.analytics-choices {
+  display: flex;
+  gap: 8px;
+}
+
+.analytics-choices button {
+  padding: 5px 11px;
+  border: 1px solid #cbb7a7;
+  border-radius: 4px;
+  background: white;
+  color: var(--accent-dark);
+  font: inherit;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.analytics-choices button:first-child {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+}
+
+.analytics-choices button:hover {
+  filter: brightness(0.94);
 }
 
 @media (max-width: 780px) {
@@ -474,6 +537,15 @@ img {
 }
 
 @media (max-width: 520px) {
+  .analytics-banner {
+    right: 16px;
+    bottom: 16px;
+  }
+
+  .footer-actions {
+    gap: 12px;
+  }
+
   .header-inner {
     min-height: 66px;
     gap: 12px;
