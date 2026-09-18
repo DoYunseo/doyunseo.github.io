@@ -5,9 +5,9 @@ export const content = {
   location: "Suwon, South Korea",
   cvUrl: "https://drive.google.com/file/d/1-c2eDTfK60VP7ZamORlMhFRc_k_DOo1v/view?usp=sharing",
   profileLinks: [
-    { label: "GitHub", shortLabel: "GH", url: "https://github.com/DoYunseo" },
-    { label: "LinkedIn", shortLabel: "in", url: "https://www.linkedin.com/in/yunseo-do-908b072aa/" },
-    { label: "Blog", shortLabel: "Blog", url: "https://tori-notepad.tistory.com/" },
+    { label: "GitHub", url: "https://github.com/DoYunseo" },
+    { label: "LinkedIn", url: "https://www.linkedin.com/in/yunseo-do-908b072aa/" },
+    { label: "Blog", url: "https://tori-notepad.tistory.com/" },
   ],
   introduction: [
     [

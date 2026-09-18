@@ -95,7 +95,7 @@ export function renderPage(data, { analyticsId = "" } = {}) {
         <div class="profile-card">
           <img class="profile-photo" src="./assets/yunseo-portrait.webp" alt="Portrait of Yunseo Do" width="600" height="600" fetchpriority="high">
           <div class="profile-links" aria-label="Social profiles">
-            ${data.profileLinks.map((link) => externalLink(link.url, link.shortLabel, "social-link", link.label)).join("")}
+            ${data.profileLinks.map((link) => externalLink(link.url, link.label, "social-link")).join("")}
           </div>
           <a class="profile-email" href="mailto:${escape(data.email)}">${escape(data.email)}</a>
           <p class="profile-location">${escape(data.location)}</p>
