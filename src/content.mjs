@@ -43,21 +43,31 @@ export const content = {
       title: "Haptic Guidance in Human–AI Interaction",
       venue: "Under Review",
       type: "First-author manuscript",
+      contribution: "Leading the study design and evaluation of physical human–AI guidance.",
     },
     {
       title: "A Pneumatic Haptic Glove for Pose-Based Human-AI Communication",
       venue: "CHI 2026 · Haptics for AI Workshop",
       type: "Workshop paper",
+      authors: ["Minwoo Lee", "Sungjoon Yoon", "Seongmin Yun", "Yunseo Do", "Seungjae Oh"],
+      contribution: "Built the AI software framework and conducted user experiments on pose-based communication.",
+      pdfUrl: "https://raw.githubusercontent.com/derikon/HapticsAI_Workshop/main/position_papers/Oh-AIforHapticsHapticsforAI.pdf",
     },
     {
       title: "Gaze-Conditioned Grasp Synthesis via 2D Segmentation and 3D Reconstruction",
       venue: "Korea Software Congress (KSC) 2025 · Honorable Mention",
       type: "Conference paper",
+      authors: ["Yunseo Do", "Seungjae Oh"],
+      contribution: "Designed the gaze-to-grasp pipeline and evaluated it with users.",
+      pdfUrl: "https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE12577724",
     },
     {
       title: "CrossGaussian: Enhancing Remote Collaboration through 3D Gaussian Splatting and Real-time 360° Streaming",
       venue: "UIST Adjunct 2025",
       type: "Conference paper",
+      authors: ["Jaehyun Byun", "Byunghoon Kang", "Yonghyun Gwon", "Hongsong Choi", "Yunseo Do", "Eunho Kim", "Sangkeun Park", "Seungjae Oh"],
+      contribution: "Supported user experiments and semi-structured interviews for the VR collaboration system.",
+      pdfUrl: "https://dl.acm.org/doi/pdf/10.1145/3746058.3758348",
     },
   ],
   education: {
@@ -69,7 +79,10 @@ export const content = {
     {
       title: "arXiv Save As Title",
       description: "A Chrome extension that downloads arXiv papers using their titles as readable PDF filenames.",
-      links: [{ label: "GitHub", url: "https://github.com/DoYunseo/arXiv-save-as-Title" }],
+      links: [
+        { label: "Chrome Web Store", url: "https://chromewebstore.google.com/detail/arxiv-save-as-title/kjdkgfhkdikbcklgdjkfbjgloafjmjoc?pli=1" },
+        { label: "GitHub", url: "https://github.com/DoYunseo/arXiv-save-as-Title" },
+      ],
     },
   ],
   experience: [

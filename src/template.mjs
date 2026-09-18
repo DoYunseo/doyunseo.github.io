@@ -22,12 +22,19 @@ const renderNews = (items) => items.map((item) => `
     <span>${escape(item.text)}</span>
   </li>`).join("");
 
-const renderResearch = (items) => items.map((item) => `
+const renderAuthors = (authors, profileName) => authors?.length ? `
+      <p class="publication-authors">${authors.map((author) => author === profileName
+        ? `<strong class="publication-author-self">${escape(author)}</strong>`
+        : escape(author)).join(", ")}</p>` : "";
+
+const renderResearch = (items, profileName) => items.map((item) => `
   <article class="publication">
     <div class="publication-type">${escape(item.type)}</div>
     <div class="publication-body">
-      <h3>${escape(item.title)}</h3>
+      <h3>${escape(item.title)}</h3>${renderAuthors(item.authors, profileName)}
       <p class="publication-venue">${escape(item.venue)}</p>
+      <p class="publication-contribution"><span>Contribution:</span> ${escape(item.contribution)}</p>${item.pdfUrl ? `
+      <div class="publication-links">${externalLink(item.pdfUrl, "PDF", "small-button", `${item.title} PDF`)}</div>` : ""}
     </div>
   </article>`).join("");
 
@@ -98,8 +105,8 @@ export function renderPage(data, { analyticsId = "" } = {}) {
         </section>
 
         <section class="main-section" id="research" aria-labelledby="research-title">
-          <h2 id="research-title">Selected Research</h2>
-          <div class="publication-list">${renderResearch(data.research)}</div>
+          <h2 id="research-title">Research</h2>
+          <div class="publication-list">${renderResearch(data.research, data.name)}</div>
         </section>
 
         <section class="main-section" id="projects" aria-labelledby="projects-title">
