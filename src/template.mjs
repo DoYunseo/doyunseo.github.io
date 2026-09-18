@@ -1,0 +1,133 @@
+const escape = (value) => String(value).replace(/[&<>"']/g, (character) => ({
+  "&": "&amp;",
+  "<": "&lt;",
+  ">": "&gt;",
+  '"': "&quot;",
+  "'": "&#39;",
+})[character]);
+
+const externalLink = (url, label, className = "", ariaLabel = "") =>
+  `<a href="${escape(url)}"${className ? ` class="${className}"` : ""}${ariaLabel ? ` aria-label="${escape(ariaLabel)}"` : ""} target="_blank" rel="noopener noreferrer">${escape(label)}</a>`;
+
+const richText = (segments) => segments.map((segment) =>
+  typeof segment === "string" ? escape(segment) :
+  segment.url.startsWith("mailto:")
+    ? `<a href="${escape(segment.url)}">${escape(segment.label)}</a>`
+    : externalLink(segment.url, segment.label)
+).join("");
+
+const renderNews = (items) => items.map((item) => `
+  <li class="news-item">
+    <time>${escape(item.date)}</time>
+    <span>${escape(item.text)}</span>
+  </li>`).join("");
+
+const renderResearch = (items) => items.map((item) => `
+  <article class="publication">
+    <div class="publication-type">${escape(item.type)}</div>
+    <div class="publication-body">
+      <h3>${escape(item.title)}</h3>
+      <p class="publication-venue">${escape(item.venue)}</p>
+      <details class="abstract">
+        <summary>Abstract</summary>
+        <p>${escape(item.abstract)}</p>
+      </details>
+    </div>
+  </article>`).join("");
+
+const renderProjects = (items) => items.map((item) => `
+  <article class="project">
+    <h3>${escape(item.title)}</h3>
+    <p>${escape(item.description)}</p>
+    <div class="project-links">${item.links.map((link) => externalLink(link.url, link.label, "small-button")).join("")}</div>
+  </article>`).join("");
+
+const renderExperience = (items) => items.map((item) => `
+  <li class="simple-row">
+    <span class="row-date">${escape(item.period)}</span>
+    <div><strong>${escape(item.role)}</strong><span>${escape(item.organization)}</span></div>
+  </li>`).join("");
+
+const renderAwards = (items) => items.map((item) => `
+  <li class="simple-row">
+    <span class="row-date">${escape(item.year)}</span>
+    <div><strong>${escape(item.award)}</strong><span>${escape(item.event)}</span></div>
+  </li>`).join("");
+
+export function renderPage(data) {
+  return `<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="description" content="Yunseo Do is an undergraduate HCI researcher at Kyung Hee University's ITEM Lab, working on human–AI interaction and physical AI.">
+    <title>${escape(data.name)} — HCI Researcher</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23764a30'/%3E%3Cellipse cx='32' cy='36' rx='16' ry='18' fill='%23f7e7cd'/%3E%3Cpath d='M15 27q17-18 34 0v7H15z' fill='%23c58d5d'/%3E%3Cpath d='M31 13q2-6 7-7' stroke='%23f7e7cd' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="header-inner page-width">
+        <a class="brand" href="#top"><span class="brand-icon" aria-hidden="true">🐿️</span>${escape(data.name)}</a>
+        <nav aria-label="Main navigation">
+          <a href="#research">Research</a>
+          <a href="#projects">Projects</a>
+          ${externalLink(data.cvUrl, "CV")}
+        </nav>
+      </div>
+    </header>
+
+    <div class="page-width page-layout" id="top">
+      <aside class="sidebar" aria-label="Profile">
+        <div class="profile-card">
+          <img class="profile-photo" src="./assets/yunseo-portrait.webp" alt="Portrait of Yunseo Do" width="413" height="532" fetchpriority="high">
+          <div class="profile-links" aria-label="Social profiles">
+            ${data.profileLinks.map((link) => externalLink(link.url, link.shortLabel, "social-link", link.label)).join("")}
+          </div>
+          <a class="profile-email" href="mailto:${escape(data.email)}">${escape(data.email)}</a>
+          <p class="profile-location">${escape(data.location)}</p>
+        </div>
+      </aside>
+
+      <section class="news" aria-labelledby="news-title">
+        <h2 id="news-title">News</h2>
+        <ol>${renderNews(data.news)}</ol>
+      </section>
+
+      <main id="main" class="main-content">
+        <section class="introduction" aria-label="About Yunseo Do">
+          ${data.introduction.map((paragraph) => `<p>${richText(paragraph)}</p>`).join("\n          ")}
+        </section>
+
+        <section class="main-section" id="research" aria-labelledby="research-title">
+          <h2 id="research-title">Selected Research</h2>
+          <div class="publication-list">${renderResearch(data.research)}</div>
+        </section>
+
+        <section class="main-section" id="projects" aria-labelledby="projects-title">
+          <h2 id="projects-title">Projects</h2>
+          <div class="project-list">${renderProjects(data.projects)}</div>
+        </section>
+
+        <section class="main-section" id="experience" aria-labelledby="experience-title">
+          <h2 id="experience-title">Experience &amp; Education</h2>
+          <ol class="simple-list">${renderExperience(data.experience)}</ol>
+          <div class="education"><span class="row-date">Education</span><div><strong>B.E. in Artificial Intelligence</strong><span>Kyung Hee University · Expected February 2027</span></div></div>
+        </section>
+
+        <section class="main-section" id="recognition" aria-labelledby="recognition-title">
+          <h2 id="recognition-title">Selected Honors</h2>
+          <ol class="simple-list">${renderAwards(data.awards)}</ol>
+        </section>
+      </main>
+    </div>
+
+    <footer class="site-footer page-width">
+      <p>© 2026 ${escape(data.name)}.</p>
+      <a href="#top">Back to top ↑</a>
+    </footer>
+  </body>
+</html>`;
+}
