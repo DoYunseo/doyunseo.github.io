@@ -137,7 +137,10 @@ export function renderPage(data, { analyticsId = "" } = {}) {
     </div>
 
     <footer class="site-footer page-width">
-      <p>© 2026 ${escape(data.name)}.</p>
+      <div class="footer-meta">
+        <p>© 2026 ${escape(data.name)}.</p>
+        <p class="site-credit">Inspired by ${externalLink("https://inhwasong.com/", "Inhwa Song")} and ${externalLink("https://github.com/Hyunseung-Lim/webpagetemplate", "Hyunseung Lim's webpagetemplate")}; modified for this site.</p>
+      </div>
       <div class="footer-actions">${analyticsId ? `
         <button class="analytics-settings" type="button" data-analytics-settings hidden>Analytics settings</button>` : ""}
         <a href="#top">Back to top ↑</a>

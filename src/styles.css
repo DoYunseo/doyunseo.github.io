@@ -413,6 +413,7 @@ img {
 /* Footer */
 .site-footer {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   gap: 20px;
   padding: 20px 0 35px;
@@ -425,6 +426,13 @@ img {
   margin: 0;
 }
 
+.footer-meta {
+  flex: 1 1 360px;
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+
 .site-footer a {
   text-decoration: none;
 }
@@ -433,9 +441,15 @@ img {
   color: var(--accent);
 }
 
+.site-credit a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
 .footer-actions {
   display: flex;
   align-items: center;
+  flex-shrink: 0;
   gap: 20px;
 }
 
