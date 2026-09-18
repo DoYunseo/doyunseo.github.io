@@ -13,4 +13,17 @@ A small static research homepage inspired by the layout of [Inhwa Song's site](h
 
 ## GitHub Pages
 
-For a public academic homepage, create a repository named `doyunseo.github.io` and publish the contents of `dist/` at the repository root (or use a GitHub Actions workflow to upload `dist/`). The site then lives at `https://doyunseo.github.io/`; a custom domain can be added later in the repository's Pages settings.
+The workflow in `.github/workflows/deploy.yml` builds `dist/` and publishes it whenever `main` is pushed.
+
+1. Under the `DoYunseo` GitHub account, create an empty **public** repository named `doyunseo.github.io`. Leave the README, `.gitignore`, and license creation boxes unchecked.
+2. In the new repository, go to **Settings → Pages → Build and deployment** and set **Source** to **GitHub Actions**.
+3. From this project directory, push the local `main` branch:
+
+   ```sh
+   git remote add github https://github.com/DoYunseo/doyunseo.github.io.git
+   git push -u github main
+   ```
+
+4. Check the repository's **Actions** tab for a successful “Deploy to GitHub Pages” run. The published address is `https://doyunseo.github.io/`.
+
+For later updates, edit files in `src/`, commit, and run `git push github main`. GitHub Actions rebuilds and publishes the site. A custom domain can be added later in the repository's Pages settings.
