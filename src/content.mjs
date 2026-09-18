@@ -90,8 +90,8 @@ export const content = {
   ],
   experience: [
     { period: "2025.03 – Present", role: "Undergraduate Researcher", organization: "ITEM Lab, Kyung Hee University" },
-    { period: "2024.08 – 2025.01", role: "Research Intern", organization: "Environmental Safety Group, KIST Europe", organizationUrl: "https://www.kist-europe.de/" },
     { period: "2025.05 – 2025.10", role: "AI Research Club Instructor", organization: "Dongbuk High School, Seoul" },
+    { period: "2024.08 – 2025.01", role: "Research Intern", organization: "Environmental Safety Group, KIST Europe", organizationUrl: "https://www.kist-europe.de/" },
     { period: "2024.01 – 2024.07", role: "President, KHUDA 5th", organization: "Data Analysis & AI Club, Kyung Hee University" },
   ],
   awards: [
