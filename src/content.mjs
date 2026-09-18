@@ -4,7 +4,7 @@ export const content = {
   analyticsId: "G-BMCR22GYM5",
   email: "ysdoh0209@khu.ac.kr",
   location: "Suwon, South Korea",
-  cvUrl: "https://drive.google.com/file/d/1-c2eDTfK60VP7ZamORlMhFRc_k_DOo1v/view?usp=sharing",
+  cvUrl: "https://drive.google.com/file/d/1l_coO_dp53Iu-yUJ3iLO489eG5vHsORc/view?usp=sharing",
   profileLinks: [
     { label: "GitHub", url: "https://github.com/DoYunseo" },
     { label: "LinkedIn", url: "https://www.linkedin.com/in/yunseo-do-908b072aa/" },
