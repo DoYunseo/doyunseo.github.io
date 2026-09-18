@@ -30,6 +30,7 @@ const renderAuthors = (authors, profileName) => authors?.length ? `
 const renderResearchLinks = (item) => {
   const links = [
     item.doiUrl && externalLink(item.doiUrl, "DOI", "small-button", `${item.title} DOI`),
+    item.recordLink && externalLink(item.recordLink.url, item.recordLink.label, "small-button", `${item.title} on ${item.recordLink.label}`),
     item.pdfUrl && externalLink(item.pdfUrl, "PDF", "small-button", `${item.title} PDF`),
   ].filter(Boolean);
   return links.length ? `

@@ -59,6 +59,7 @@ export const content = {
       type: "Conference paper",
       authors: ["Yunseo Do", "Seungjae Oh"],
       contribution: "Designed the gaze-to-grasp pipeline and evaluated it with users.",
+      recordLink: { label: "DBpia", url: "https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE12577724" },
       pdfUrl: "./assets/gaze-conditioned-grasp-ksc2025.pdf",
     },
     {
