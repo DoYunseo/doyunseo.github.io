@@ -19,7 +19,7 @@ const richText = (segments) => segments.map((segment) =>
 const renderNews = (items) => items.map((item) => `
   <li class="news-item">
     <time>${escape(item.date)}</time>
-    <span>${escape(item.text)}</span>
+    <span>${escape(item.text)}${item.flag ? ` <span class="flag-de" role="img" aria-label="${escape(item.flag)}"></span>` : ""}</span>
   </li>`).join("");
 
 const renderAuthors = (authors, profileName) => authors?.length ? `
@@ -85,7 +85,7 @@ export function renderPage(data, { analyticsId = "" } = {}) {
     <div class="page-width page-layout" id="top">
       <aside class="sidebar" aria-label="Profile">
         <div class="profile-card">
-          <img class="profile-photo" src="./assets/yunseo-portrait.webp" alt="Portrait of Yunseo Do" width="413" height="532" fetchpriority="high">
+          <img class="profile-photo" src="./assets/yunseo-portrait.webp" alt="Portrait of Yunseo Do" width="600" height="600" fetchpriority="high">
           <div class="profile-links" aria-label="Social profiles">
             ${data.profileLinks.map((link) => externalLink(link.url, link.shortLabel, "social-link", link.label)).join("")}
           </div>

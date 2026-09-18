@@ -141,7 +141,7 @@ img {
   margin: 0 auto;
   border-radius: 50%;
   object-fit: cover;
-  object-position: center 18%;
+  object-position: center;
   border: 1px solid var(--line);
 }
 
@@ -224,6 +224,15 @@ img {
 .news-item time {
   color: var(--accent-dark);
   font-weight: 700;
+}
+
+.flag-de {
+  display: inline-block;
+  width: 16px;
+  height: 11px;
+  margin-left: 2px;
+  vertical-align: -1px;
+  background: linear-gradient(to bottom, #000 0 33.333%, #dd0000 33.333% 66.667%, #ffce00 66.667%);
 }
 
 /* Main content */

@@ -35,7 +35,7 @@ export const content = {
     { date: "2026", text: "Co-authored a paper at the CHI 2026 Haptics for AI Workshop." },
     { date: "2025", text: "Received an Honorable Mention for our paper at KSC 2025." },
     { date: "2025.03", text: "Joined ITEM Lab at Kyung Hee University as an undergraduate researcher." },
-    { date: "2024.08", text: "Started a research internship at KIST Europe." },
+    { date: "2024.08", text: "Started a research internship at KIST Europe, Germany", flag: "🇩🇪" },
     { date: "2024.01", text: "Became president of KHUDA's 5th cohort." },
   ],
   research: [
