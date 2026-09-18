@@ -453,19 +453,6 @@ img {
   gap: 20px;
 }
 
-.analytics-settings {
-  padding: 0;
-  border: 0;
-  background: none;
-  color: inherit;
-  font: inherit;
-  cursor: pointer;
-}
-
-.analytics-settings:hover {
-  color: var(--accent);
-}
-
 .analytics-banner {
   position: fixed;
   right: 24px;
@@ -481,8 +468,7 @@ img {
   line-height: 1.6;
 }
 
-.analytics-banner[hidden],
-.analytics-settings[hidden] {
+.analytics-banner[hidden] {
   display: none;
 }
 

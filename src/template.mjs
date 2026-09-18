@@ -141,8 +141,7 @@ export function renderPage(data, { analyticsId = "" } = {}) {
         <p>© 2026 ${escape(data.name)}.</p>
         <p class="site-credit">Inspired by ${externalLink("https://inhwasong.com/", "Inhwa Song")} and ${externalLink("https://github.com/Hyunseung-Lim/webpagetemplate", "Hyunseung Lim's webpagetemplate")}; modified for this site.</p>
       </div>
-      <div class="footer-actions">${analyticsId ? `
-        <button class="analytics-settings" type="button" data-analytics-settings hidden>Analytics settings</button>` : ""}
+      <div class="footer-actions">
         <a href="#top">Back to top ↑</a>
       </div>
     </footer>${analyticsId ? `

@@ -1,5 +1,4 @@
 const banner = document.querySelector("[data-analytics-banner]");
-const settingsButton = document.querySelector("[data-analytics-settings]");
 const measurementId = banner?.dataset.measurementId;
 const storageKey = "yunseo-analytics-consent";
 
@@ -30,12 +29,10 @@ if (banner && measurementId) {
 
   const showBanner = () => {
     banner.hidden = false;
-    settingsButton.hidden = true;
   };
 
   const hideBanner = () => {
     banner.hidden = true;
-    settingsButton.hidden = false;
   };
 
   if (choice === "allow") {
@@ -62,6 +59,4 @@ if (banner && measurementId) {
     hideBanner();
     if (nextChoice === "deny" && tagLoaded) location.reload();
   });
-
-  settingsButton.addEventListener("click", showBanner);
 }
