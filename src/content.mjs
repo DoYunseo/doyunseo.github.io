@@ -41,7 +41,7 @@ export const content = {
   ],
   research: [
     {
-      title: "Haptic Guidance in Human–AI Interaction",
+      title: "Haptic Guidance in Physical Human–AI Decision-Making",
       venue: "Under Review",
       type: "First-author manuscript",
       contribution: "Led the full research process: topic selection, experimental design, user study execution, quantitative and qualitative analysis, and manuscript writing.",
