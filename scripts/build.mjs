@@ -6,7 +6,7 @@ import { renderPage } from "../src/template.mjs";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const output = join(root, "dist");
-const analyticsId = process.env.GA_MEASUREMENT_ID?.trim() || "";
+const analyticsId = process.env.GA_MEASUREMENT_ID?.trim() || content.analyticsId || "";
 
 if (analyticsId && !/^G-[A-Z0-9]+$/.test(analyticsId)) {
   throw new Error("GA_MEASUREMENT_ID must be a GA4 measurement ID such as G-XXXXXXXXXX");

@@ -1,6 +1,7 @@
 // Edit this file to update the homepage. Run `node scripts/build.mjs` afterward.
 export const content = {
   name: "Yunseo Do",
+  analyticsId: "G-BMCR22GYM5",
   email: "ysdoh0209@khu.ac.kr",
   location: "Suwon, South Korea",
   cvUrl: "https://drive.google.com/file/d/1-c2eDTfK60VP7ZamORlMhFRc_k_DOo1v/view?usp=sharing",
