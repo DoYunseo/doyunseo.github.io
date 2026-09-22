@@ -67,11 +67,13 @@ const renderAwards = (items) => items.map((item) => `
   </li>`).join("");
 
 const renderFooterScene = () => `<div class="woodland-scene" data-woodland-scene>
-      <svg class="woodland-landscape" viewBox="0 0 1200 180" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+      <svg class="woodland-ground" viewBox="0 0 1200 180" preserveAspectRatio="none" aria-hidden="true">
         <path class="grass-hill grass-hill-back" d="M0 128 C130 111 230 126 350 117 C500 106 612 132 744 119 C892 104 1018 120 1200 108 V180 H0 Z"/>
         <path class="grass-hill grass-hill-front" d="M0 145 C122 132 242 148 370 137 C510 125 645 151 790 137 C936 123 1064 143 1200 130 V180 H0 Z"/>
+      </svg>
 
-        <g class="woodland-tree woodland-tree-left" transform="translate(76 18)">
+      <svg class="woodland-tree woodland-tree-left" viewBox="-14 -10 124 152" aria-hidden="true">
+        <g>
           <path class="tree-trunk" d="M39 52 C35 83 36 111 30 140 H58 C52 108 54 82 50 52 Z"/>
           <path class="tree-branch" d="M43 79 C26 66 20 57 12 46 M47 87 C66 72 70 61 78 48"/>
           <circle class="tree-leaf tree-leaf-deep" cx="17" cy="47" r="28"/>
@@ -79,8 +81,10 @@ const renderFooterScene = () => `<div class="woodland-scene" data-woodland-scene
           <circle class="tree-leaf tree-leaf-light" cx="78" cy="52" r="29"/>
           <circle class="tree-leaf" cx="48" cy="68" r="33"/>
         </g>
+      </svg>
 
-        <g class="woodland-tree woodland-tree-right" transform="translate(1084 43) scale(.72)">
+      <svg class="woodland-tree woodland-tree-right" viewBox="-14 -10 124 152" aria-hidden="true">
+        <g>
           <path class="tree-trunk" d="M39 52 C35 83 36 111 30 140 H58 C52 108 54 82 50 52 Z"/>
           <path class="tree-branch" d="M43 79 C26 66 20 57 12 46 M47 87 C66 72 70 61 78 48"/>
           <circle class="tree-leaf tree-leaf-deep" cx="17" cy="47" r="28"/>
@@ -88,8 +92,10 @@ const renderFooterScene = () => `<div class="woodland-scene" data-woodland-scene
           <circle class="tree-leaf tree-leaf-light" cx="78" cy="52" r="29"/>
           <circle class="tree-leaf" cx="48" cy="68" r="33"/>
         </g>
+      </svg>
 
-        <g class="woodland-squirrel" transform="translate(350 68)">
+      <svg class="woodland-squirrel" viewBox="-28 -2 133 122" aria-hidden="true">
+        <g>
           <path class="squirrel-tail" d="M34 69 C-7 76 -25 50 -13 24 C-2 0 36 1 48 20 C59 38 42 50 29 42 C43 43 47 27 37 20 C22 10 3 22 5 40 C7 57 25 58 39 54 Z"/>
           <ellipse class="squirrel-body" cx="69" cy="76" rx="29" ry="40"/>
           <circle class="squirrel-head" cx="73" cy="38" r="27"/>
@@ -106,9 +112,10 @@ const renderFooterScene = () => `<div class="woodland-scene" data-woodland-scene
           </g>
           <path class="squirrel-foot" d="M50 112 Q58 119 68 114 M78 114 Q91 120 100 112"/>
         </g>
-
-        <path class="grass-blade" d="M194 161 q-3-18-14-29 M197 162 q8-22 20-31 M1002 158 q0-18-12-31 M1005 159 q8-22 23-28"/>
       </svg>
+
+      <span class="grass-tuft grass-tuft-left" aria-hidden="true"></span>
+      <span class="grass-tuft grass-tuft-right" aria-hidden="true"></span>
 
       <span class="drifting-leaf leaf-one" aria-hidden="true"></span>
       <span class="drifting-leaf leaf-two" aria-hidden="true"></span>

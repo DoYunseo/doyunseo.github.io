@@ -469,7 +469,7 @@ img {
   background: linear-gradient(to bottom, rgba(246, 238, 231, 0), rgba(246, 238, 231, 0.28));
 }
 
-.woodland-landscape {
+.woodland-ground {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -489,8 +489,7 @@ img {
   fill: #80543a;
 }
 
-.tree-branch,
-.grass-blade {
+.tree-branch {
   fill: none;
   stroke: #80543a;
   stroke-width: 5;
@@ -509,8 +508,68 @@ img {
   fill: #9bab7c;
 }
 
+.woodland-tree,
 .woodland-squirrel {
+  position: absolute;
+  bottom: 0;
+  display: block;
+  height: auto;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.woodland-tree-left {
+  left: clamp(14px, 5vw, 82px);
+  width: clamp(96px, 9vw, 128px);
+}
+
+.woodland-tree-right {
+  right: clamp(14px, 5vw, 82px);
+  width: clamp(82px, 7.5vw, 108px);
+}
+
+.woodland-squirrel {
+  left: clamp(125px, 29vw, 450px);
+  width: clamp(108px, 10vw, 132px);
   filter: drop-shadow(0 2px 1px rgba(76, 47, 29, 0.12));
+}
+
+.grass-tuft {
+  position: absolute;
+  bottom: 1px;
+  width: 38px;
+  height: 32px;
+  pointer-events: none;
+}
+
+.grass-tuft::before,
+.grass-tuft::after {
+  position: absolute;
+  bottom: 0;
+  width: 5px;
+  height: 31px;
+  border-radius: 999px;
+  background: #80543a;
+  content: "";
+  transform-origin: bottom;
+}
+
+.grass-tuft::before {
+  left: 12px;
+  transform: rotate(-32deg);
+}
+
+.grass-tuft::after {
+  right: 10px;
+  transform: rotate(34deg);
+}
+
+.grass-tuft-left {
+  left: clamp(116px, 15vw, 250px);
+}
+
+.grass-tuft-right {
+  right: clamp(116px, 15vw, 250px);
 }
 
 .squirrel-tail,
