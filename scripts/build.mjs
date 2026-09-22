@@ -16,6 +16,7 @@ await mkdir(join(output, "assets"), { recursive: true });
 await writeFile(join(output, "index.html"), renderPage(content, { analyticsId }), "utf8");
 await writeFile(join(output, "styles.css"), await readFile(join(root, "src/styles.css"), "utf8"), "utf8");
 await copyFile(join(root, "src/analytics.js"), join(output, "analytics.js"));
+await copyFile(join(root, "src/footer-scene.js"), join(output, "footer-scene.js"));
 for (const asset of [
   "yunseo-portrait.webp",
   "pneumatic-haptic-glove-chi2026.pdf",

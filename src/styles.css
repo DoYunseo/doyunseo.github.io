@@ -412,14 +412,19 @@ img {
 
 /* Footer */
 .site-footer {
+  position: relative;
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.footer-inner {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 20px;
-  padding: 20px 0 35px;
+  padding: 20px 0 24px;
   border-top: 1px solid var(--line);
-  color: var(--muted);
-  font-size: 12px;
 }
 
 .site-footer p {
@@ -451,6 +456,223 @@ img {
   align-items: center;
   flex-shrink: 0;
   gap: 20px;
+}
+
+/* Interactive woodland footer */
+.woodland-scene {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  height: clamp(142px, 16vw, 184px);
+  min-height: 142px;
+  overflow: hidden;
+  background: linear-gradient(to bottom, rgba(246, 238, 231, 0), rgba(246, 238, 231, 0.28));
+}
+
+.woodland-landscape {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.grass-hill-back {
+  fill: #e7eee0;
+}
+
+.grass-hill-front {
+  fill: #ceddbf;
+}
+
+.tree-trunk {
+  fill: #80543a;
+}
+
+.tree-branch,
+.grass-blade {
+  fill: none;
+  stroke: #80543a;
+  stroke-width: 5;
+  stroke-linecap: round;
+}
+
+.tree-leaf {
+  fill: #829665;
+}
+
+.tree-leaf-deep {
+  fill: #6f8452;
+}
+
+.tree-leaf-light {
+  fill: #9bab7c;
+}
+
+.woodland-squirrel {
+  filter: drop-shadow(0 2px 1px rgba(76, 47, 29, 0.12));
+}
+
+.squirrel-tail,
+.squirrel-body,
+.squirrel-head {
+  fill: #b96c2c;
+  stroke: #6e3e21;
+  stroke-width: 3;
+  stroke-linejoin: round;
+}
+
+.squirrel-belly {
+  fill: #e1a15f;
+}
+
+.squirrel-ear,
+.squirrel-face,
+.squirrel-arm,
+.squirrel-foot {
+  fill: none;
+  stroke: #5e3520;
+  stroke-width: 3.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.squirrel-eye {
+  fill: #493021;
+}
+
+.squirrel-acorn path:first-child {
+  fill: #694026;
+}
+
+.squirrel-acorn path:nth-child(2) {
+  fill: #a96532;
+}
+
+.squirrel-acorn path:last-child {
+  fill: none;
+  stroke: #694026;
+  stroke-width: 5;
+  stroke-linecap: round;
+}
+
+.playful-acorn {
+  --acorn-x: 0px;
+  --acorn-y: 0px;
+  --acorn-rotation: 0deg;
+  position: absolute;
+  left: 62%;
+  bottom: 17px;
+  z-index: 3;
+  width: 48px;
+  height: 58px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: grab;
+  transform: translate3d(var(--acorn-x), var(--acorn-y), 0) rotate(var(--acorn-rotation));
+  transform-origin: 50% 86%;
+  will-change: transform;
+  filter: drop-shadow(0 3px 2px rgba(67, 42, 27, 0.17));
+  touch-action: manipulation;
+}
+
+.playful-acorn:active {
+  cursor: grabbing;
+}
+
+.playful-acorn svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.acorn-stem {
+  fill: none;
+  stroke: #694026;
+  stroke-width: 5;
+  stroke-linecap: round;
+}
+
+.acorn-cap {
+  fill: #694026;
+  stroke: #54301d;
+  stroke-width: 2;
+}
+
+.acorn-body {
+  fill: #b96c35;
+  stroke: #714126;
+  stroke-width: 2;
+}
+
+.acorn-shine {
+  fill: none;
+  stroke: rgba(255, 226, 185, 0.65);
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+
+.drifting-leaf {
+  position: absolute;
+  z-index: 2;
+  bottom: 20px;
+  width: 15px;
+  height: 9px;
+  border-radius: 100% 0 100% 0;
+  background: #c97935;
+  opacity: 0.9;
+  pointer-events: none;
+  animation: leaf-roll 8s ease-in-out infinite alternate;
+}
+
+.leaf-one {
+  left: 21%;
+  animation-delay: -2.2s;
+}
+
+.leaf-two {
+  left: 49%;
+  bottom: 12px;
+  width: 12px;
+  height: 8px;
+  background: #a65332;
+  animation-duration: 10s;
+  animation-delay: -6s;
+}
+
+.leaf-three {
+  right: 18%;
+  bottom: 27px;
+  background: #d69532;
+  animation-duration: 9s;
+  animation-delay: -4.5s;
+}
+
+.leaf-four {
+  right: 34%;
+  bottom: 8px;
+  width: 11px;
+  height: 7px;
+  background: #9a5c31;
+  animation-duration: 11s;
+  animation-delay: -8s;
+}
+
+@keyframes leaf-roll {
+  0%, 18% {
+    transform: translate3d(-10px, 0, 0) rotate(12deg);
+  }
+  48% {
+    transform: translate3d(22px, -7px, 0) rotate(190deg);
+  }
+  68% {
+    transform: translate3d(38px, 0, 0) rotate(280deg);
+  }
+  100% {
+    transform: translate3d(74px, -3px, 0) rotate(430deg);
+  }
 }
 
 @media (max-width: 780px) {
@@ -525,6 +747,7 @@ img {
     grid-template-columns: 1fr;
     margin-bottom: 12px;
   }
+
 }
 
 @media (max-width: 520px) {
@@ -595,10 +818,32 @@ img {
   .news ol {
     grid-template-columns: 1fr;
   }
+
+  .footer-inner {
+    padding-bottom: 18px;
+  }
+
+  .woodland-scene {
+    height: 142px;
+  }
+
+  .playful-acorn {
+    left: 66%;
+    width: 43px;
+    height: 52px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .drifting-leaf {
+    animation: none;
+  }
+
+  .playful-acorn {
+    will-change: auto;
   }
 }

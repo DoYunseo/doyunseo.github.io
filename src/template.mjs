@@ -66,6 +66,65 @@ const renderAwards = (items) => items.map((item) => `
     <div><strong>${escape(item.award)}</strong><span>${escape(item.event)}</span></div>
   </li>`).join("");
 
+const renderFooterScene = () => `<div class="woodland-scene" data-woodland-scene>
+      <svg class="woodland-landscape" viewBox="0 0 1200 180" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+        <path class="grass-hill grass-hill-back" d="M0 128 C130 111 230 126 350 117 C500 106 612 132 744 119 C892 104 1018 120 1200 108 V180 H0 Z"/>
+        <path class="grass-hill grass-hill-front" d="M0 145 C122 132 242 148 370 137 C510 125 645 151 790 137 C936 123 1064 143 1200 130 V180 H0 Z"/>
+
+        <g class="woodland-tree woodland-tree-left" transform="translate(76 18)">
+          <path class="tree-trunk" d="M39 52 C35 83 36 111 30 140 H58 C52 108 54 82 50 52 Z"/>
+          <path class="tree-branch" d="M43 79 C26 66 20 57 12 46 M47 87 C66 72 70 61 78 48"/>
+          <circle class="tree-leaf tree-leaf-deep" cx="17" cy="47" r="28"/>
+          <circle class="tree-leaf" cx="48" cy="31" r="36"/>
+          <circle class="tree-leaf tree-leaf-light" cx="78" cy="52" r="29"/>
+          <circle class="tree-leaf" cx="48" cy="68" r="33"/>
+        </g>
+
+        <g class="woodland-tree woodland-tree-right" transform="translate(1084 43) scale(.72)">
+          <path class="tree-trunk" d="M39 52 C35 83 36 111 30 140 H58 C52 108 54 82 50 52 Z"/>
+          <path class="tree-branch" d="M43 79 C26 66 20 57 12 46 M47 87 C66 72 70 61 78 48"/>
+          <circle class="tree-leaf tree-leaf-deep" cx="17" cy="47" r="28"/>
+          <circle class="tree-leaf" cx="48" cy="31" r="36"/>
+          <circle class="tree-leaf tree-leaf-light" cx="78" cy="52" r="29"/>
+          <circle class="tree-leaf" cx="48" cy="68" r="33"/>
+        </g>
+
+        <g class="woodland-squirrel" transform="translate(350 68)">
+          <path class="squirrel-tail" d="M34 69 C-7 76 -25 50 -13 24 C-2 0 36 1 48 20 C59 38 42 50 29 42 C43 43 47 27 37 20 C22 10 3 22 5 40 C7 57 25 58 39 54 Z"/>
+          <ellipse class="squirrel-body" cx="69" cy="76" rx="29" ry="40"/>
+          <circle class="squirrel-head" cx="73" cy="38" r="27"/>
+          <path class="squirrel-ear" d="M52 20 C47 4 61 3 66 17 M80 15 C88 1 99 9 94 23"/>
+          <ellipse class="squirrel-belly" cx="72" cy="82" rx="15" ry="23"/>
+          <circle class="squirrel-eye" cx="64" cy="34" r="2.8"/>
+          <circle class="squirrel-eye" cx="84" cy="34" r="2.8"/>
+          <path class="squirrel-face" d="M72 40 Q75 44 78 40 M75 44 Q75 49 69 50 M75 44 Q76 49 82 49"/>
+          <path class="squirrel-arm" d="M54 69 Q66 60 73 73 M91 67 Q81 60 75 73"/>
+          <g class="squirrel-acorn" transform="translate(65 64) scale(.48)">
+            <path d="M4 19 C4 8 12 2 24 2 C36 2 44 8 44 19 Z"/>
+            <path d="M9 18 H39 C39 38 32 48 24 53 C16 48 9 38 9 18 Z"/>
+            <path d="M24 3 Q24 -4 30 -7"/>
+          </g>
+          <path class="squirrel-foot" d="M50 112 Q58 119 68 114 M78 114 Q91 120 100 112"/>
+        </g>
+
+        <path class="grass-blade" d="M194 161 q-3-18-14-29 M197 162 q8-22 20-31 M1002 158 q0-18-12-31 M1005 159 q8-22 23-28"/>
+      </svg>
+
+      <span class="drifting-leaf leaf-one" aria-hidden="true"></span>
+      <span class="drifting-leaf leaf-two" aria-hidden="true"></span>
+      <span class="drifting-leaf leaf-three" aria-hidden="true"></span>
+      <span class="drifting-leaf leaf-four" aria-hidden="true"></span>
+
+      <button class="playful-acorn" type="button" data-playful-acorn aria-label="Playful acorn. Move your pointer near it to make it roll.">
+        <svg viewBox="0 0 52 64" aria-hidden="true">
+          <path class="acorn-stem" d="M27 10 C27 4 31 2 36 3"/>
+          <path class="acorn-cap" d="M5 25 C5 13 14 8 26 8 C38 8 47 14 47 25 C37 29 15 29 5 25 Z"/>
+          <path class="acorn-body" d="M9 24 H43 C43 44 35 56 26 61 C17 56 9 44 9 24 Z"/>
+          <path class="acorn-shine" d="M18 32 C17 39 20 46 24 50"/>
+        </svg>
+      </button>
+    </div>`;
+
 export function renderPage(data, { analyticsId = "" } = {}) {
   return `<!doctype html>
 <html lang="en">
@@ -136,15 +195,19 @@ export function renderPage(data, { analyticsId = "" } = {}) {
       </main>
     </div>
 
-    <footer class="site-footer page-width">
-      <div class="footer-meta">
-        <p>© 2026 ${escape(data.name)}.</p>
-        <p class="site-credit">Inspired by ${externalLink("https://inhwasong.com/", "Inhwa Song")} and ${externalLink("https://github.com/Hyunseung-Lim/webpagetemplate", "Hyunseung Lim's webpagetemplate")}; modified for this site.</p>
+    <footer class="site-footer">
+      <div class="footer-inner page-width">
+        <div class="footer-meta">
+          <p>© 2026 ${escape(data.name)}.</p>
+          <p class="site-credit">Inspired by ${externalLink("https://inhwasong.com/", "Inhwa Song")} and ${externalLink("https://github.com/Hyunseung-Lim/webpagetemplate", "Hyunseung Lim's webpagetemplate")}; modified for this site.</p>
+        </div>
+        <div class="footer-actions">
+          <a href="#top">Back to top ↑</a>
+        </div>
       </div>
-      <div class="footer-actions">
-        <a href="#top">Back to top ↑</a>
-      </div>
-    </footer>${analyticsId ? `
+      ${renderFooterScene()}
+    </footer>
+    <script src="./footer-scene.js" defer></script>${analyticsId ? `
     <script src="./analytics.js" data-measurement-id="${escape(analyticsId)}" defer></script>` : ""}
   </body>
 </html>`;
