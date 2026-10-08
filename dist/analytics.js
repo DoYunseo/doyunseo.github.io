@@ -35,6 +35,18 @@ if (measurementId && previousChoice !== "deny") {
   window.gtag("js", new Date());
   window.gtag("config", measurementId);
 
+  document.addEventListener("click", (event) => {
+    const trackedLink = event.target.closest?.("a[data-analytics-event]");
+    if (!trackedLink) return;
+
+    window.gtag("event", trackedLink.dataset.analyticsEvent, {
+      link_text: trackedLink.textContent.trim(),
+      link_url: trackedLink.href,
+      link_location: trackedLink.dataset.analyticsLocation || "unknown",
+      content_name: trackedLink.dataset.analyticsContent || trackedLink.textContent.trim(),
+    });
+  });
+
   const script = document.createElement("script");
   script.async = true;
   script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(measurementId)}`;

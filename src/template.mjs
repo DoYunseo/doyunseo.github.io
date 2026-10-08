@@ -6,8 +6,14 @@ const escape = (value) => String(value).replace(/[&<>"']/g, (character) => ({
   "'": "&#39;",
 })[character]);
 
-const externalLink = (url, label, className = "", ariaLabel = "") =>
-  `<a href="${escape(url)}"${className ? ` class="${className}"` : ""}${ariaLabel ? ` aria-label="${escape(ariaLabel)}"` : ""} target="_blank" rel="noopener noreferrer">${escape(label)}</a>`;
+const analyticsAttributes = ({ eventName = "", location = "", contentName = "" } = {}) => [
+  eventName && ` data-analytics-event="${escape(eventName)}"`,
+  location && ` data-analytics-location="${escape(location)}"`,
+  contentName && ` data-analytics-content="${escape(contentName)}"`,
+].filter(Boolean).join("");
+
+const externalLink = (url, label, className = "", ariaLabel = "", analytics = {}) =>
+  `<a href="${escape(url)}"${className ? ` class="${className}"` : ""}${ariaLabel ? ` aria-label="${escape(ariaLabel)}"` : ""}${analyticsAttributes(analytics)} target="_blank" rel="noopener noreferrer">${escape(label)}</a>`;
 
 const richText = (segments) => segments.map((segment) =>
   typeof segment === "string" ? escape(segment) :
@@ -29,9 +35,17 @@ const renderAuthors = (authors, profileName) => authors?.length ? `
 
 const renderResearchLinks = (item) => {
   const links = [
-    item.doiUrl && externalLink(item.doiUrl, "DOI", "small-button", `${item.title} DOI`),
+    item.doiUrl && externalLink(item.doiUrl, "DOI", "small-button", `${item.title} DOI`, {
+      eventName: "doi_click",
+      location: "research",
+      contentName: item.title,
+    }),
     item.recordLink && externalLink(item.recordLink.url, item.recordLink.label, "small-button", `${item.title} on ${item.recordLink.label}`),
-    item.pdfUrl && externalLink(item.pdfUrl, "PDF", "small-button", `${item.title} PDF`),
+    item.pdfUrl && externalLink(item.pdfUrl, "PDF", "small-button", `${item.title} PDF`, {
+      eventName: "pdf_click",
+      location: "research",
+      contentName: item.title,
+    }),
   ].filter(Boolean);
   return links.length ? `
       <div class="publication-links">${links.join("")}</div>` : "";
@@ -51,7 +65,11 @@ const renderProjects = (items) => items.map((item) => `
   <article class="project">
     <h3>${escape(item.title)}</h3>
     <p>${escape(item.description)}</p>
-    <div class="project-links">${item.links.map((link) => externalLink(link.url, link.label, "small-button")).join("")}</div>
+    <div class="project-links">${item.links.map((link) => externalLink(link.url, link.label, "small-button", "", {
+      eventName: link.label === "Chrome Web Store" ? "chrome_web_store_click" : link.label === "GitHub" ? "github_click" : "",
+      location: "projects",
+      contentName: item.title,
+    })).join("")}</div>
   </article>`).join("");
 
 const renderExperience = (items) => items.map((item) => `
@@ -153,7 +171,11 @@ export function renderPage(data, { analyticsId = "", assetVersion = "" } = {}) {
         <nav aria-label="Main navigation">
           <a href="#research">Research</a>
           <a href="#projects">Projects</a>
-          ${externalLink(data.cvUrl, "CV")}
+          ${externalLink(data.cvUrl, "CV", "", "", {
+            eventName: "cv_click",
+            location: "header",
+            contentName: "Yunseo Do CV",
+          })}
         </nav>
       </div>
     </header>
@@ -163,7 +185,11 @@ export function renderPage(data, { analyticsId = "", assetVersion = "" } = {}) {
         <div class="profile-card">
           <img class="profile-photo" src="./assets/yunseo-portrait.webp" alt="Portrait of Yunseo Do" width="600" height="600" fetchpriority="high">
           <div class="profile-links" aria-label="Social profiles">
-            ${data.profileLinks.map((link) => externalLink(link.url, link.label, "social-link")).join("")}
+            ${data.profileLinks.map((link) => externalLink(link.url, link.label, "social-link", "", {
+              eventName: link.label === "GitHub" ? "github_click" : link.label === "LinkedIn" ? "linkedin_click" : "",
+              location: "profile",
+              contentName: `${data.name} ${link.label}`,
+            })).join("")}
           </div>
           <a class="profile-email" href="mailto:${escape(data.email)}">${escape(data.email)}</a>
           <p class="profile-location">${escape(data.location)}</p>
