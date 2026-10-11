@@ -7,7 +7,7 @@
     <meta name="description" content="I developed a RAG-based assistant that helped KIST Europe researchers find relevant Horizon Europe projects across a large public dataset.">
     <title>Research Intern — Yunseo Do</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23764a30'/%3E%3Cellipse cx='32' cy='36' rx='16' ry='18' fill='%23f7e7cd'/%3E%3Cpath d='M15 27q17-18 34 0v7H15z' fill='%23c58d5d'/%3E%3Cpath d='M31 13q2-6 7-7' stroke='%23f7e7cd' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
-    <link rel="stylesheet" href="../styles.css?v=eb7ea6eed7">
+    <link rel="stylesheet" href="../styles.css?v=4a98ade012">
   </head>
   <body class="detail-page">
     <a class="skip-link" href="#main">Skip to content</a>
@@ -18,61 +18,33 @@
           <a href="../index.html#research">Research</a>
           <a href="../index.html#projects">Projects</a>
           <a href="../index.html#experience">Experience</a>
-          <a href="https://drive.google.com/file/d/1l_coO_dp53Iu-yUJ3iLO489eG5vHsORc/view?usp=sharing" data-analytics-event="cv_click" data-analytics-location="experience_detail_header" data-analytics-content="Yunseo Do CV" target="_blank" rel="noopener noreferrer">CV</a>
+          <a href="https://drive.google.com/file/d/1ilotEf4KxfitKLj3DdNlyLxxf_nU86Wd/view?usp=sharing" data-analytics-event="cv_click" data-analytics-location="experience_detail_header" data-analytics-content="Yunseo Do CV" target="_blank" rel="noopener noreferrer">CV</a>
         </nav>
       </div>
     </header>
 
     <main id="main" class="detail-main page-width">
       <a class="back-link" href="../index.html#experience">← Back to Experience</a>
-      <section class="detail-hero">
+      <section class="detail-hero detail-hero-plain">
         <div class="detail-hero-copy">
-          <p class="detail-eyebrow">Experience</p>
           <h1>Research Intern</h1>
           <p class="detail-organization">KIST Europe</p>
-          <p class="detail-summary">I developed a RAG-based assistant that helped KIST Europe researchers find relevant Horizon Europe projects across a large public dataset.</p>
           <dl class="detail-meta">
             <div><dt>Period</dt><dd>August 2024 – January 2025</dd></div>
             <div><dt>Location</dt><dd>Saarbrücken, Germany</dd></div>
           </dl>
+          <p class="detail-summary">I developed a RAG-based assistant that helped KIST Europe researchers find relevant Horizon Europe projects across a large public dataset.</p>
         </div>
-        <figure class="detail-hero-media"><img src="../assets/experience/kist-europe-final-presentation.jpg" alt="Yunseo Do presenting the Horizon Europe chatbot at KIST Europe"><figcaption>Yunseo Do presenting the Horizon Europe chatbot at KIST Europe</figcaption></figure>
+        <figure class="detail-hero-media"><img src="../assets/experience/kist-europe-final-presentation.jpg" alt="Yunseo Do presenting the Horizon Europe chatbot at KIST Europe"><figcaption>Final presentation at KIST Europe, 2025.</figcaption></figure>
       </section>
-      
-      <aside class="credential-note" aria-label="Certificate information"><span class="credential-mark" aria-hidden="true">✓</span><div><h2>Global Internship Program Completion</h2><p>Completed a six-month internship in the Planning and Coordination Division under the supervision of Dr. Juyong Yoon (August 5, 2024 – January 31, 2025).</p></div></aside>
+
       <article class="detail-article">
-        
-        <section class="detail-section">
-          <h2>1. Problem Recognition</h2>
-          <p>Horizon Europe project data was public, but finding useful information was slow. The dataset contained 2,048 XML files, with each file containing roughly 1,000 lines. Researchers often had to open and inspect files manually.</p><p>I framed the project around a practical question: how could researchers retrieve relevant project information quickly while keeping answers grounded in the source data?</p>
+
+        <section class="detail-prose" aria-label="Experience details">
+          <p>During my six-month internship in the Planning and Coordination Division at KIST Europe, I worked under the supervision of Dr. Juyong Yoon. My project began with a practical problem: researchers needed a faster way to find relevant Horizon Europe projects. The data was public, but it was spread across 2,048 XML files, each with roughly 1,000 lines, so finding useful information often meant opening files one by one.</p><p>I started by asking what researchers actually needed from the tool. They wanted something free to run, grounded in the source data, available in both Korean and English, and simple enough to use without a complicated setup. Based on those needs, I planned a retrieval-augmented generation assistant.</p><p>I built the retrieval pipeline in Python with LangChain, Hugging Face, Gemma 2 2B, and a vector store. It retrieved relevant documents using cosine similarity, passed them to the model, and displayed answers in a Streamlit interface. I also added project links and tables when they made the results easier to compare.</p><p>I shared early versions with researchers and kept revising the system based on their feedback. A recurring request was to understand where each answer came from, so I changed the interface to make retrieved sources easier to inspect and made the assistant respond more cautiously when the evidence was weak.</p><p>This was the first time I saw clearly that a technically correct system is not automatically a useful one. I learned to begin with the users’ real task, watch how they use the system, and keep improving it until the interface and the underlying model work together for their needs.</p>
           
         </section>
-        <section class="detail-section">
-          <h2>2. Planning</h2>
-          <p>I defined four requirements for the assistant: it should be free to operate, produce grounded answers, support Korean and English, and provide a simple conversational interface.</p><p>I chose retrieval-augmented generation to reduce unsupported answers and planned a lightweight web application that internal researchers could access without a complex setup.</p>
-          
-        </section>
-        <section class="detail-section">
-          <h2>3. Development</h2>
-          <p>I built a retrieval pipeline that searched a vector store with cosine similarity, passed the most relevant documents to the language model, and generated answers from that context. The interface returned project links and structured tables when they helped researchers compare results.</p><p>After comparing available language-model options, I used Gemma 2 2B through Hugging Face, connected the retrieval and answer pipeline with LangChain, and built the web interface in Streamlit.</p>
-          
-        </section>
-        <section class="detail-section">
-          <h2>4. Iterative Updates</h2>
-          <p>I shared working versions with internal researchers, gathered feedback on answer relevance and usability, and revised the retrieval flow and interface across multiple iterations.</p><p>The updates focused on making sources easier to verify, presenting results in clearer formats, and responding conservatively when the available evidence was insufficient.</p>
-          
-        </section>
-        <section class="detail-section">
-          <h2>5. Tech Stack</h2>
-          
-          <ul class="tech-tags" aria-label="Technology stack"><li>Python</li><li>RAG</li><li>LangChain</li><li>Hugging Face</li><li>Gemma 2 2B</li><li>Streamlit</li><li>Vector Retrieval</li><li>Cosine Similarity</li></ul>
-        </section>
-        <section class="detail-section">
-          <h2>6. What I Learned</h2>
-          <p>This project taught me that technical correctness alone does not make a useful tool. A system becomes valuable when its retrieval flow, responses, and interface reflect the users’ real tasks and needs.</p><p>That lesson continues to shape how I approach research and development: start from the user’s problem, test the system in context, and keep refining it through feedback.</p>
-          
-        </section>
-        <a href="https://www.kist-europe.de/" class="detail-action" data-analytics-event="experience_resource_click" data-analytics-location="experience_detail" data-analytics-content="Visit KIST Europe" target="_blank" rel="noopener noreferrer">Visit KIST Europe ↗</a>
+<a href="https://www.kist-europe.de/" class="detail-action" data-analytics-event="experience_resource_click" data-analytics-location="experience_detail" data-analytics-content="Visit KIST Europe" target="_blank" rel="noopener noreferrer">Visit KIST Europe ↗</a>
       </article>
     </main>
 
@@ -150,7 +122,7 @@
       </button>
     </div>
     </footer>
-    <script src="../footer-scene.js?v=eb7ea6eed7" defer></script>
-    <script src="../analytics.js?v=eb7ea6eed7" data-measurement-id="G-BMCR22GYM5" defer></script>
+    <script src="../footer-scene.js?v=4a98ade012" defer></script>
+    <script src="../analytics.js?v=4a98ade012" data-measurement-id="G-BMCR22GYM5" defer></script>
   </body>
 </html>

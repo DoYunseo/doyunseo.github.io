@@ -7,6 +7,10 @@ export const experienceDetails = [
     listPeriod: "2025.03 – Present",
     location: "Yongin, South Korea",
     summary: "I study how AI assistance can support physical decision-making while preserving user agency.",
+    heroImage: "experience/item-lab-cherry-blossoms.jpg",
+    heroAlt: "Members of ITEM Lab posing together beneath cherry blossoms at Kyung Hee University",
+    heroCaption: "ITEM Lab with cherry blossoms 🌸",
+    plainSections: true,
     sections: [
       {
         title: "Research Focus",
@@ -17,13 +21,19 @@ export const experienceDetails = [
       {
         title: "Research Process",
         paragraphs: [
-          "I work across the full research process, including topic selection, experimental design, system development, user studies, quantitative and qualitative analysis, and academic writing.",
+          "At ITEM Lab, I learned how to review prior work, formulate research questions, design experiments, conduct user studies, analyze quantitative and qualitative data, and write research papers.",
         ],
       },
       {
         title: "Current Direction",
         paragraphs: [
           "I am currently investigating haptic guidance in physical human–AI decision-making and how assistance can remain effective without overriding a person’s intent.",
+        ],
+      },
+      {
+        title: "Persistence",
+        paragraphs: [
+          "More than anything, I learned to keep iterating until an idea works and to stay with a difficult problem long enough to understand and solve it.",
         ],
       },
     ],
@@ -37,17 +47,21 @@ export const experienceDetails = [
     listPeriod: "2025.06 – 2025.11",
     listOrganization: "KT LAN School Program · 44 sessions / 87 hours",
     location: "Remote · Incheon, South Korea",
-    summary: "I supported three middle-school students through 44 online mentoring sessions totaling 87 hours.",
+    summary: "I supported four middle-school students through 44 online mentoring sessions totaling 87 hours, including AI coding lessons.",
+    heroImage: "experience/kt-online-mentoring.jpg",
+    heroAlt: "A tablet displaying an online mathematics lesson beside a cup of coffee",
+    heroCaption: "Teaching online with my coffee ☕",
+    plainSections: true,
     stats: [
       { value: "44", label: "Mentoring sessions" },
       { value: "87", label: "Total hours" },
-      { value: "3", label: "Students" },
+      { value: "4", label: "Students" },
     ],
     sections: [
       {
         title: "Mentoring",
         paragraphs: [
-          "I provided online foundational learning support in Korean, English, and mathematics to three middle-school students in Incheon.",
+          "I provided online mentoring in Korean, English, mathematics, and AI coding to four middle-school students in Incheon.",
         ],
       },
       {
@@ -57,12 +71,26 @@ export const experienceDetails = [
         ],
       },
       {
+        title: "Student Outcomes",
+        paragraphs: [
+          "One student who had scored in the 40s in mathematics during second grade earned 82 on the final exam and finished the term with a 93-point overall average.",
+          "Students said the sessions helped them ask questions more comfortably, work through mistakes without pressure, and persist with unfamiliar problems.",
+        ],
+      },
+      {
         title: "What I Learned",
         paragraphs: [
-          "The experience strengthened my ability to explain the same idea in different ways and to adjust the pace of a session to each learner’s needs.",
+          "The experience strengthened my ability to explain the same idea in different ways and adjust the pace of a session to each learner’s needs. It also showed me that patient, individualized support can build both academic confidence and healthier study habits.",
         ],
       },
     ],
+    testimonial: {
+      title: "A Message I Still Remember",
+      introduction: "At the end of the program, one student told me that our sessions helped them let go of the pressure to never make mistakes and take time to work through problems. It is a message I still remember.",
+      image: "experience/kt-student-message.jpg",
+      alt: "An anonymized Korean message from a student reflecting on their growth during the KT LAN School mentoring program",
+      caption: "An anonymized message from a student at the end of the mentoring program.",
+    },
   },
   {
     slug: "dongbuk-ai-club",
@@ -72,20 +100,19 @@ export const experienceDetails = [
     listPeriod: "2025.05 – 2025.10",
     listOrganization: "Dongbuk High School, Seoul",
     location: "Seoul, South Korea",
-    summary: "I taught high-school students how to approach AI topics through structured lessons and research-oriented activities.",
+    summary: "I designed and taught a ten-session AI course in which students used AI tools to build personal websites and team projects.",
     heroImage: "experience/dongbuk-ai-club-session.jpg",
     heroAlt: "Yunseo Do teaching an AI research club session at Dongbuk High School",
+    heroCaption: "AI research club session at Dongbuk High School, 2025.",
+    plainSections: true,
     sections: [
       {
         title: "Teaching",
         paragraphs: [
-          "I prepared and delivered lessons for an AI research club, helping students build a practical understanding of AI concepts and the process of turning a question into an investigation.",
-        ],
-      },
-      {
-        title: "What I Learned",
-        paragraphs: [
-          "Teaching made me more deliberate about explaining technical ideas clearly, checking understanding, and connecting abstract concepts to concrete examples.",
+          "I spent a lot of time thinking about how to keep the students interested and what would be most useful to them over ten 110-minute sessions. Teaching programming syntax from scratch in such a short period did not seem like the best way to help them make something meaningful, so I designed the course around building with AI tools.",
+          "I introduced core AI concepts, prompt engineering, vibe coding, and hands-on exercises with tools such as LangChain and RAG. Rather than asking students to accept generated code as it was, I taught them how to write clearer prompts, inspect the results, identify what needed to change, and revise the code until it became a useful working product.",
+          "For their individual projects, the students created personal homepages. They then worked in teams to plan and build a service, which they presented at the school festival. Seeing them turn their own ideas into things they could demonstrate helped me understand how much the structure of a class matters for sustaining curiosity and confidence.",
+          "Through this experience, I found it deeply rewarding to share what I knew and watch the students turn that knowledge into projects of their own. I also learned to choose the depth and pace of technical material around the learners in front of me, explain why a tool behaves the way it does, and give them enough room to judge its output and make the project their own.",
         ],
       },
     ],
@@ -101,48 +128,17 @@ export const experienceDetails = [
     summary: "I developed a RAG-based assistant that helped KIST Europe researchers find relevant Horizon Europe projects across a large public dataset.",
     heroImage: "experience/kist-europe-final-presentation.jpg",
     heroAlt: "Yunseo Do presenting the Horizon Europe chatbot at KIST Europe",
-    credential: {
-      title: "Global Internship Program Completion",
-      description: "Completed a six-month internship in the Planning and Coordination Division under the supervision of Dr. Juyong Yoon (August 5, 2024 – January 31, 2025).",
-    },
+    heroCaption: "Final presentation at KIST Europe, 2025.",
+    plainSections: true,
     sections: [
       {
-        title: "1. Problem Recognition",
+        title: "Experience",
         paragraphs: [
-          "Horizon Europe project data was public, but finding useful information was slow. The dataset contained 2,048 XML files, with each file containing roughly 1,000 lines. Researchers often had to open and inspect files manually.",
-          "I framed the project around a practical question: how could researchers retrieve relevant project information quickly while keeping answers grounded in the source data?",
-        ],
-      },
-      {
-        title: "2. Planning",
-        paragraphs: [
-          "I defined four requirements for the assistant: it should be free to operate, produce grounded answers, support Korean and English, and provide a simple conversational interface.",
-          "I chose retrieval-augmented generation to reduce unsupported answers and planned a lightweight web application that internal researchers could access without a complex setup.",
-        ],
-      },
-      {
-        title: "3. Development",
-        paragraphs: [
-          "I built a retrieval pipeline that searched a vector store with cosine similarity, passed the most relevant documents to the language model, and generated answers from that context. The interface returned project links and structured tables when they helped researchers compare results.",
-          "After comparing available language-model options, I used Gemma 2 2B through Hugging Face, connected the retrieval and answer pipeline with LangChain, and built the web interface in Streamlit.",
-        ],
-      },
-      {
-        title: "4. Iterative Updates",
-        paragraphs: [
-          "I shared working versions with internal researchers, gathered feedback on answer relevance and usability, and revised the retrieval flow and interface across multiple iterations.",
-          "The updates focused on making sources easier to verify, presenting results in clearer formats, and responding conservatively when the available evidence was insufficient.",
-        ],
-      },
-      {
-        title: "5. Tech Stack",
-        tags: ["Python", "RAG", "LangChain", "Hugging Face", "Gemma 2 2B", "Streamlit", "Vector Retrieval", "Cosine Similarity"],
-      },
-      {
-        title: "6. What I Learned",
-        paragraphs: [
-          "This project taught me that technical correctness alone does not make a useful tool. A system becomes valuable when its retrieval flow, responses, and interface reflect the users’ real tasks and needs.",
-          "That lesson continues to shape how I approach research and development: start from the user’s problem, test the system in context, and keep refining it through feedback.",
+          "During my six-month internship in the Planning and Coordination Division at KIST Europe, I worked under the supervision of Dr. Juyong Yoon. My project began with a practical problem: researchers needed a faster way to find relevant Horizon Europe projects. The data was public, but it was spread across 2,048 XML files, each with roughly 1,000 lines, so finding useful information often meant opening files one by one.",
+          "I started by asking what researchers actually needed from the tool. They wanted something free to run, grounded in the source data, available in both Korean and English, and simple enough to use without a complicated setup. Based on those needs, I planned a retrieval-augmented generation assistant.",
+          "I built the retrieval pipeline in Python with LangChain, Hugging Face, Gemma 2 2B, and a vector store. It retrieved relevant documents using cosine similarity, passed them to the model, and displayed answers in a Streamlit interface. I also added project links and tables when they made the results easier to compare.",
+          "I shared early versions with researchers and kept revising the system based on their feedback. A recurring request was to understand where each answer came from, so I changed the interface to make retrieved sources easier to inspect and made the assistant respond more cautiously when the evidence was weak.",
+          "This was the first time I saw clearly that a technically correct system is not automatically a useful one. I learned to begin with the users’ real task, watch how they use the system, and keep improving it until the interface and the underlying model work together for their needs.",
         ],
       },
     ],
@@ -159,34 +155,16 @@ export const experienceDetails = [
     summary: "After joining KHUDA in 2022, I served as an executive member and led the club’s fifth cohort as president in 2024.",
     heroImage: "experience/khuda-fifth-cohort.jpg",
     heroAlt: "KHUDA fifth cohort members at their completion ceremony",
-    credential: {
-      title: "KHUDA 5th Cohort Completion",
-      description: "Completed the Computer Vision course and served as president of KHUDA’s fifth cohort during the January–May 2024 program.",
-    },
+    heroCaption: "KHUDA 5th cohort completion ceremony, 2024.",
+    plainSections: true,
     sections: [
       {
-        title: "Learning in KHUDA",
+        title: "Experience",
         paragraphs: [
-          "KHUDA is Kyung Hee University’s academic community for data and AI. I joined in 2022, developed my foundations through study sessions and projects, and later completed the fifth cohort’s Computer Vision course.",
-        ],
-      },
-      {
-        title: "Leadership",
-        paragraphs: [
-          "As president, I planned and operated study groups and team projects, coordinated an academic exchange with Chung-Ang University, helped organize a joint competition, and worked on external sponsorship and club operations.",
-          "My goal was to give members a clear path from learning core concepts to applying them in collaborative projects and sharing their work with peers.",
-        ],
-      },
-      {
-        title: "Recognition",
-        paragraphs: [
-          "During my term, KHUDA was selected as a Hyundai Mobis outstanding software club and received sponsorship support for its activities.",
-        ],
-      },
-      {
-        title: "What I Learned",
-        paragraphs: [
-          "Leading KHUDA taught me that a strong learning community needs clear structure, regular feedback, and shared ownership. I learned to coordinate people with different interests while keeping the group focused on concrete learning outcomes.",
+          "I first joined KHUDA in 2022 because I wanted to learn data science and AI with people who were just as curious about them as I was. I built my foundations through study sessions and projects, later completed the fifth cohort’s Computer Vision course, and gradually became more involved in running the club as an executive member.",
+          "When I became president of the fifth cohort in 2024, I spent a lot of time thinking about how members could move beyond studying concepts and actually use what they had learned. I organized study groups and team projects, coordinated an academic exchange with Chung-Ang University, and helped run a joint competition where members could share their work with a wider community.",
+          "I was also responsible for practical parts of running the club, including schedules, communication, sponsorship, and making sure each activity continued smoothly. During my term, KHUDA was selected as a Hyundai Mobis outstanding software club and received support for its activities.",
+          "Leading KHUDA showed me that a good learning community does not come from one person having all the answers. It grows when people have a clear direction, feel comfortable asking for help, and take responsibility for learning together. I learned how to listen to members with different interests, coordinate their ideas, and create an environment where they could keep moving forward as a group.",
         ],
       },
     ],

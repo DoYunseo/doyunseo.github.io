@@ -48,8 +48,11 @@ for (const asset of [
 }
 for (const asset of [
   "dongbuk-ai-club-session.jpg",
+  "item-lab-cherry-blossoms.jpg",
   "kist-europe-final-presentation.jpg",
   "khuda-fifth-cohort.jpg",
+  "kt-online-mentoring.jpg",
+  "kt-student-message.jpg",
 ]) {
   await copyFile(
     join(root, "src/assets/experience", asset),

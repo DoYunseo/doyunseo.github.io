@@ -13,7 +13,7 @@ export const content = {
   analyticsId: "G-BMCR22GYM5",
   email: "ysdoh0209@khu.ac.kr",
   location: "Suwon, South Korea",
-  cvUrl: "https://drive.google.com/file/d/1l_coO_dp53Iu-yUJ3iLO489eG5vHsORc/view?usp=sharing",
+  cvUrl: "https://drive.google.com/file/d/1ilotEf4KxfitKLj3DdNlyLxxf_nU86Wd/view?usp=sharing",
   profileLinks: [
     { label: "GitHub", url: "https://github.com/DoYunseo" },
     { label: "LinkedIn", url: "https://www.linkedin.com/in/yunseo-do-908b072aa/" },
@@ -28,7 +28,7 @@ export const content = {
       ".",
     ],
     [
-      "My research interests include human–AI interaction, AI-based interaction, physical AI, and haptic shared control. I'm especially curious about how intelligent systems can interact with people in the physical world.",
+      "My research interests lie in human–AI interaction. I am especially interested in how AI advice can shape users’ decisions, sometimes without their full awareness, and how interaction design can help them remain reflective and in control. My current work explores these questions through haptic and visual interaction, while my broader goal is to design AI support systems that preserve human agency across different tasks and contexts.",
     ],
     [
       "Previously, I was a research intern in the Environmental Safety Group at ",
@@ -42,6 +42,16 @@ export const content = {
     ],
   ],
   news: [
+    {
+      date: "2026.09",
+      textSegments: [
+        "Submitted a first-author paper to ACM CHI 2027 with ",
+        { label: "Prof. Seungjae Oh", url: "https://lokilike.netlify.app/about/" },
+        " and ",
+        { label: "Prof. Sungahn Ko", url: "https://haiv.postech.ac.kr/" },
+        ".",
+      ],
+    },
     { date: "2026.04", text: "Co-authored a paper at the CHI 2026 Haptics for AI Workshop." },
     { date: "2025.12", text: "Received an Honorable Mention for our paper at KSC 2025." },
     { date: "2025.03", text: "Joined ITEM Lab at Kyung Hee University as an undergraduate researcher." },
@@ -82,11 +92,6 @@ export const content = {
       pdfUrl: "./assets/crossgaussian-uist-adjunct-2025.pdf",
     },
   ],
-  education: {
-    degree: "B.S. in Artificial Intelligence",
-    university: "Kyung Hee University",
-    expectedGraduation: "February 2027",
-  },
   projects: [
     {
       title: "arXiv Save As Title",

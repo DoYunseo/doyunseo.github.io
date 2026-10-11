@@ -25,7 +25,7 @@ const richText = (segments) => segments.map((segment) =>
 const renderNews = (items) => items.map((item) => `
   <li class="news-item">
     <time>${escape(item.date)}</time>
-    <span>${escape(item.text)}${item.flag ? ` <span class="flag-de" role="img" aria-label="${escape(item.flag)}"></span>` : ""}</span>
+    <span>${item.textSegments ? richText(item.textSegments) : escape(item.text)}${item.flag ? ` <span class="flag-de" role="img" aria-label="${escape(item.flag)}"></span>` : ""}</span>
   </li>`).join("");
 
 const renderAuthors = (authors, profileName) => authors?.length ? `
@@ -223,11 +223,6 @@ export function renderPage(data, { analyticsId = "", assetVersion = "" } = {}) {
           <div class="project-list">${renderProjects(data.projects)}</div>
         </section>
 
-        <section class="main-section" id="education" aria-labelledby="education-title">
-          <h2 id="education-title">Education</h2>
-          <div class="education education-standalone"><span class="row-date">B.S.</span><div><strong>${escape(data.education.degree)}</strong><span>${escape(data.education.university)} · Expected Graduation: ${escape(data.education.expectedGraduation)}</span></div></div>
-        </section>
-
         <section class="main-section" id="experience" aria-labelledby="experience-title">
           <h2 id="experience-title">Experience</h2>
           <ol class="simple-list experience-list">${renderExperience(data.experience)}</ol>
@@ -263,12 +258,46 @@ const renderDetailStats = (stats = []) => stats.length ? `
           ${stats.map((stat) => `<div><dt>${escape(stat.value)}</dt><dd>${escape(stat.label)}</dd></div>`).join("")}
         </dl>` : "";
 
-const renderDetailSections = (sections) => sections.map((section) => `
+const renderDetailSections = (sections, plain = false) => plain ? `
+        <section class="detail-prose" aria-label="Experience details">
+          ${sections.flatMap((section) => section.paragraphs || []).map((paragraph) => `<p>${escape(paragraph)}</p>`).join("")}
+        </section>` : sections.map((section) => `
         <section class="detail-section">
           <h2>${escape(section.title)}</h2>
-          ${section.paragraphs?.map((paragraph) => `<p>${escape(paragraph)}</p>`).join("") || ""}
-          ${section.tags?.length ? `<ul class="tech-tags" aria-label="Technology stack">${section.tags.map((tag) => `<li>${escape(tag)}</li>`).join("")}</ul>` : ""}
+          <div class="detail-section-body">${section.paragraphs?.map((paragraph) => `<p>${escape(paragraph)}</p>`).join("") || ""}${section.tags?.length ? `<ul class="tech-tags" aria-label="Technology stack">${section.tags.map((tag) => `<li>${escape(tag)}</li>`).join("")}</ul>` : ""}</div>
         </section>`).join("");
+
+const renderTestimonial = (testimonial) => testimonial ? `
+        <section class="detail-section detail-testimonial">
+          <h2>${escape(testimonial.title)}</h2>
+          <div class="detail-section-body">
+            <p>${escape(testimonial.introduction)}</p>
+            <figure>
+              <img src="../assets/${escape(testimonial.image)}" alt="${escape(testimonial.alt)}">
+              <figcaption>${escape(testimonial.caption)}</figcaption>
+            </figure>
+          </div>
+        </section>` : "";
+
+const renderPlainDetails = (detail) => {
+  const paragraphs = [
+    ...(detail.credential ? [detail.credential.description] : []),
+    ...detail.sections.flatMap((section) => [
+      ...(section.paragraphs || []),
+      ...(section.tags?.length ? [section.tags.join(" · ")] : []),
+    ]),
+  ];
+  return `
+        <section class="detail-prose" aria-label="Experience details">
+          ${paragraphs.map((paragraph) => `<p>${escape(paragraph)}</p>`).join("")}
+          ${detail.testimonial ? `
+          <p>${escape(detail.testimonial.introduction)}</p>
+          <figure>
+            <img src="../assets/${escape(detail.testimonial.image)}" alt="${escape(detail.testimonial.alt)}">
+            <figcaption>${escape(detail.testimonial.caption)}</figcaption>
+          </figure>` : ""}
+        </section>`;
+};
 
 const renderRelatedLink = (link) => {
   if (!link) return "";
@@ -283,7 +312,7 @@ const renderRelatedLink = (link) => {
 
 export function renderExperiencePage(detail, data, { analyticsId = "", assetVersion = "" } = {}) {
   const assetSuffix = assetVersion ? `?v=${escape(assetVersion)}` : "";
-  const detailClass = detail.heroImage ? "detail-hero" : "detail-hero detail-hero-text-only";
+  const detailClass = `${detail.heroImage ? "detail-hero" : "detail-hero detail-hero-text-only"}${detail.plainSections ? " detail-hero-plain" : ""}`;
   return `<!doctype html>
 <html lang="en">
   <head>
@@ -317,22 +346,20 @@ export function renderExperiencePage(detail, data, { analyticsId = "", assetVers
       <a class="back-link" href="../index.html#experience">← Back to Experience</a>
       <section class="${detailClass}">
         <div class="detail-hero-copy">
-          <p class="detail-eyebrow">Experience</p>
           <h1>${escape(detail.role)}</h1>
           <p class="detail-organization">${escape(detail.organization)}</p>
-          <p class="detail-summary">${escape(detail.summary)}</p>
           <dl class="detail-meta">
             <div><dt>Period</dt><dd>${escape(detail.period)}</dd></div>
             <div><dt>Location</dt><dd>${escape(detail.location)}</dd></div>
           </dl>
+          <p class="detail-summary">${escape(detail.summary)}</p>
         </div>
-        ${detail.heroImage ? `<figure class="detail-hero-media"><img src="../assets/${escape(detail.heroImage)}" alt="${escape(detail.heroAlt)}"><figcaption>${escape(detail.heroAlt)}</figcaption></figure>` : ""}
+        ${detail.heroImage ? `<figure class="detail-hero-media"><img src="../assets/${escape(detail.heroImage)}" alt="${escape(detail.heroAlt)}"><figcaption>${escape(detail.heroCaption || detail.heroAlt)}</figcaption></figure>` : ""}
       </section>
-      ${renderDetailStats(detail.stats)}
-      ${detail.credential ? `<aside class="credential-note" aria-label="Certificate information"><span class="credential-mark" aria-hidden="true">✓</span><div><h2>${escape(detail.credential.title)}</h2><p>${escape(detail.credential.description)}</p></div></aside>` : ""}
+${detail.plainSections ? "" : renderDetailStats(detail.stats)}
       <article class="detail-article">
-        ${renderDetailSections(detail.sections)}
-        ${renderRelatedLink(detail.relatedLink)}
+${detail.plainSections ? renderPlainDetails(detail) : `${detail.credential ? `<aside class="credential-note" aria-label="Certificate information"><span class="credential-label">Certificate</span><div><h2>${escape(detail.credential.title)}</h2><p>${escape(detail.credential.description)}</p></div></aside>` : ""}${renderDetailSections(detail.sections)}${renderTestimonial(detail.testimonial)}`}
+${renderRelatedLink(detail.relatedLink)}
       </article>
     </main>
 
