@@ -1,4 +1,13 @@
 // Edit this file to update the homepage. Run `node scripts/build.mjs` afterward.
+import { experienceDetails } from "./experience-content.mjs";
+
+const experience = experienceDetails.map((item) => ({
+  period: item.listPeriod,
+  role: item.role,
+  organization: item.listOrganization || item.organization,
+  detailSlug: item.slug,
+}));
+
 export const content = {
   name: "Yunseo Do",
   analyticsId: "G-BMCR22GYM5",
@@ -88,12 +97,7 @@ export const content = {
       ],
     },
   ],
-  experience: [
-    { period: "2025.03 – Present", role: "Undergraduate Researcher", organization: "ITEM Lab, Kyung Hee University" },
-    { period: "2025.05 – 2025.10", role: "AI Research Club Instructor", organization: "Dongbuk High School, Seoul" },
-    { period: "2024.08 – 2025.01", role: "Research Intern", organization: "Environmental Safety Group, KIST Europe", organizationUrl: "https://www.kist-europe.de/" },
-    { period: "2024.01 – 2024.07", role: "President, KHUDA 5th", organization: "Data Analysis & AI Club, Kyung Hee University" },
-  ],
+  experience,
   awards: [
     { year: "2025", award: "Honorable Mention Paper Award", event: "Korea Software Congress (KSC)" },
     { year: "2023", award: "Grand Prize", event: "Seoul Central AI Competition (SCAICO)" },

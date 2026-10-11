@@ -3,7 +3,8 @@ import { createHash } from "node:crypto";
 import { fileURLToPath } from "node:url";
 import { dirname, join, resolve } from "node:path";
 import { content } from "../src/content.mjs";
-import { renderPage } from "../src/template.mjs";
+import { experienceDetails } from "../src/experience-content.mjs";
+import { renderExperiencePage, renderPage } from "../src/template.mjs";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const output = join(root, "dist");
@@ -24,8 +25,16 @@ if (analyticsId && !/^G-[A-Z0-9]+$/.test(analyticsId)) {
   throw new Error("GA_MEASUREMENT_ID must be a GA4 measurement ID such as G-XXXXXXXXXX");
 }
 
-await mkdir(join(output, "assets"), { recursive: true });
+await Promise.all([
+  mkdir(join(output, "assets", "experience"), { recursive: true }),
+  mkdir(join(output, "experience"), { recursive: true }),
+]);
 await writeFile(join(output, "index.html"), renderPage(content, { analyticsId, assetVersion }), "utf8");
+await Promise.all(experienceDetails.map((detail) => writeFile(
+  join(output, "experience", `${detail.slug}.html`),
+  renderExperiencePage(detail, content, { analyticsId, assetVersion }),
+  "utf8",
+)));
 await writeFile(join(output, "styles.css"), styles, "utf8");
 await writeFile(join(output, "analytics.js"), analyticsScript, "utf8");
 await writeFile(join(output, "footer-scene.js"), footerSceneScript, "utf8");
@@ -37,4 +46,13 @@ for (const asset of [
 ]) {
   await copyFile(join(root, "src/assets", asset), join(output, "assets", asset));
 }
-console.log(`Built ${join(output, "index.html")}`);
+for (const asset of [
+  "kist-europe-final-presentation.jpg",
+  "khuda-fifth-cohort.jpg",
+]) {
+  await copyFile(
+    join(root, "src/assets/experience", asset),
+    join(output, "assets/experience", asset),
+  );
+}
+console.log(`Built homepage and ${experienceDetails.length} experience pages in ${output}`);

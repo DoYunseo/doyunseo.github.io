@@ -73,9 +73,16 @@ const renderProjects = (items) => items.map((item) => `
   </article>`).join("");
 
 const renderExperience = (items) => items.map((item) => `
-  <li class="simple-row">
-    <span class="row-date">${escape(item.period)}</span>
-    <div><strong>${escape(item.role)}</strong><span>${item.organizationUrl ? externalLink(item.organizationUrl, item.organization) : escape(item.organization)}</span></div>
+  <li>
+    <a class="simple-row experience-row" href="./experience/${escape(item.detailSlug)}.html"${analyticsAttributes({
+      eventName: "experience_detail_click",
+      location: "experience",
+      contentName: item.role,
+    })}>
+      <span class="row-date">${escape(item.period)}</span>
+      <span class="experience-summary"><strong>${escape(item.role)}</strong><span>${escape(item.organization)}</span></span>
+      <span class="experience-cta" aria-hidden="true">View details <span>→</span></span>
+    </a>
   </li>`).join("");
 
 const renderAwards = (items) => items.map((item) => `
@@ -216,10 +223,14 @@ export function renderPage(data, { analyticsId = "", assetVersion = "" } = {}) {
           <div class="project-list">${renderProjects(data.projects)}</div>
         </section>
 
+        <section class="main-section" id="education" aria-labelledby="education-title">
+          <h2 id="education-title">Education</h2>
+          <div class="education education-standalone"><span class="row-date">B.S.</span><div><strong>${escape(data.education.degree)}</strong><span>${escape(data.education.university)} · Expected Graduation: ${escape(data.education.expectedGraduation)}</span></div></div>
+        </section>
+
         <section class="main-section" id="experience" aria-labelledby="experience-title">
-          <h2 id="experience-title">Experience &amp; Education</h2>
-          <ol class="simple-list">${renderExperience(data.experience)}</ol>
-          <div class="education"><span class="row-date">Education</span><div><strong>${escape(data.education.degree)}</strong><span>${escape(data.education.university)} · Expected Graduation: ${escape(data.education.expectedGraduation)}</span></div></div>
+          <h2 id="experience-title">Experience</h2>
+          <ol class="simple-list experience-list">${renderExperience(data.experience)}</ol>
         </section>
 
         <section class="main-section" id="recognition" aria-labelledby="recognition-title">
@@ -243,6 +254,100 @@ export function renderPage(data, { analyticsId = "", assetVersion = "" } = {}) {
     </footer>
     <script src="./footer-scene.js${assetSuffix}" defer></script>${analyticsId ? `
     <script src="./analytics.js${assetSuffix}" data-measurement-id="${escape(analyticsId)}" defer></script>` : ""}
+  </body>
+</html>`;
+}
+
+const renderDetailStats = (stats = []) => stats.length ? `
+        <dl class="detail-stats">
+          ${stats.map((stat) => `<div><dt>${escape(stat.value)}</dt><dd>${escape(stat.label)}</dd></div>`).join("")}
+        </dl>` : "";
+
+const renderDetailSections = (sections) => sections.map((section) => `
+        <section class="detail-section">
+          <h2>${escape(section.title)}</h2>
+          ${section.paragraphs?.map((paragraph) => `<p>${escape(paragraph)}</p>`).join("") || ""}
+          ${section.tags?.length ? `<ul class="tech-tags" aria-label="Technology stack">${section.tags.map((tag) => `<li>${escape(tag)}</li>`).join("")}</ul>` : ""}
+        </section>`).join("");
+
+const renderRelatedLink = (link) => {
+  if (!link) return "";
+  return link.external
+    ? externalLink(link.url, `${link.label} ↗`, "detail-action", "", {
+      eventName: "experience_resource_click",
+      location: "experience_detail",
+      contentName: link.label,
+    })
+    : `<a class="detail-action" href="${escape(link.url)}">${escape(link.label)} →</a>`;
+};
+
+export function renderExperiencePage(detail, data, { analyticsId = "", assetVersion = "" } = {}) {
+  const assetSuffix = assetVersion ? `?v=${escape(assetVersion)}` : "";
+  const detailClass = detail.heroImage ? "detail-hero" : "detail-hero detail-hero-text-only";
+  return `<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="description" content="${escape(detail.summary)}">
+    <title>${escape(detail.role)} — ${escape(data.name)}</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23764a30'/%3E%3Cellipse cx='32' cy='36' rx='16' ry='18' fill='%23f7e7cd'/%3E%3Cpath d='M15 27q17-18 34 0v7H15z' fill='%23c58d5d'/%3E%3Cpath d='M31 13q2-6 7-7' stroke='%23f7e7cd' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+    <link rel="stylesheet" href="../styles.css${assetSuffix}">
+  </head>
+  <body class="detail-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="header-inner page-width">
+        <a class="brand" href="../index.html#top"><span class="brand-icon" aria-hidden="true">🐿️</span>${escape(data.name)}</a>
+        <nav aria-label="Main navigation">
+          <a href="../index.html#research">Research</a>
+          <a href="../index.html#projects">Projects</a>
+          <a href="../index.html#experience">Experience</a>
+          ${externalLink(data.cvUrl, "CV", "", "", {
+            eventName: "cv_click",
+            location: "experience_detail_header",
+            contentName: "Yunseo Do CV",
+          })}
+        </nav>
+      </div>
+    </header>
+
+    <main id="main" class="detail-main page-width">
+      <a class="back-link" href="../index.html#experience">← Back to Experience</a>
+      <section class="${detailClass}">
+        <div class="detail-hero-copy">
+          <p class="detail-eyebrow">Experience</p>
+          <h1>${escape(detail.role)}</h1>
+          <p class="detail-organization">${escape(detail.organization)}</p>
+          <p class="detail-summary">${escape(detail.summary)}</p>
+          <dl class="detail-meta">
+            <div><dt>Period</dt><dd>${escape(detail.period)}</dd></div>
+            <div><dt>Location</dt><dd>${escape(detail.location)}</dd></div>
+          </dl>
+        </div>
+        ${detail.heroImage ? `<figure class="detail-hero-media"><img src="../assets/${escape(detail.heroImage)}" alt="${escape(detail.heroAlt)}"><figcaption>${escape(detail.heroAlt)}</figcaption></figure>` : ""}
+      </section>
+      ${renderDetailStats(detail.stats)}
+      ${detail.credential ? `<aside class="credential-note" aria-label="Certificate information"><span class="credential-mark" aria-hidden="true">✓</span><div><h2>${escape(detail.credential.title)}</h2><p>${escape(detail.credential.description)}</p></div></aside>` : ""}
+      <article class="detail-article">
+        ${renderDetailSections(detail.sections)}
+        ${renderRelatedLink(detail.relatedLink)}
+      </article>
+    </main>
+
+    <footer class="site-footer detail-footer">
+      <div class="footer-inner page-width">
+        <div class="footer-meta">
+          <p>© 2026 ${escape(data.name)}.</p>
+          <p class="site-credit">Inspired by ${externalLink("https://inhwasong.com/", "Inhwa Song")} and ${externalLink("https://github.com/Hyunseung-Lim/webpagetemplate", "Hyunseung Lim's webpagetemplate")}; modified for this site.</p>
+        </div>
+        <div class="footer-actions"><a href="#main">Back to top ↑</a></div>
+      </div>
+      ${renderFooterScene()}
+    </footer>
+    <script src="../footer-scene.js${assetSuffix}" defer></script>${analyticsId ? `
+    <script src="../analytics.js${assetSuffix}" data-measurement-id="${escape(analyticsId)}" defer></script>` : ""}
   </body>
 </html>`;
 }
