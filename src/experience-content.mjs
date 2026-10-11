@@ -73,6 +73,8 @@ export const experienceDetails = [
     listOrganization: "Dongbuk High School, Seoul",
     location: "Seoul, South Korea",
     summary: "I taught high-school students how to approach AI topics through structured lessons and research-oriented activities.",
+    heroImage: "experience/dongbuk-ai-club-session.jpg",
+    heroAlt: "Yunseo Do teaching an AI research club session at Dongbuk High School",
     sections: [
       {
         title: "Teaching",

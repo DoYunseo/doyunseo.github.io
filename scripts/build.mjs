@@ -47,6 +47,7 @@ for (const asset of [
   await copyFile(join(root, "src/assets", asset), join(output, "assets", asset));
 }
 for (const asset of [
+  "dongbuk-ai-club-session.jpg",
   "kist-europe-final-presentation.jpg",
   "khuda-fifth-cohort.jpg",
 ]) {
